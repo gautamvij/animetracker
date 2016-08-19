@@ -1,19 +1,49 @@
-<html data-ng-app="">
+<html >
 <head>
     <title>
+
     </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
 </head>
-<body >
+<body ng-app="animetracker">
     <br><br>
     Hi! We are trying our best to be up and running !!!<br><br>
     <img src="http://media4.giphy.com/media/I2ETgDwI93oli/200_d.gif" />
     <br>
     <br>
+
     Type for bit fun
     <div class="container">
-    <input type = "text" data-ng-model="name"/> <br> {{ name }}
+    <input type = "text" ng-model="name"/> <br> {{ name }}
 </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+
+<div ng-controller="ListController">
+    <h1> {{message}} </h1>
+    <br><br>
+
+    <input type ="text" ng-model="query"></input>
+    <button ng-click="getList()"> Submit </button>
+
+    <br><br>
+    <div ng-repeat= "result in results">
+        <ul>
+            <li>{{xx.title_english}}</li>
+            <li>{{xx.id}}</li>
+            <li>{{xx.popularity}}</li>
+        </ul>
+    </div>
+    <p ng-show="!results.length">no vals with this filter</p>
+
+</div>
+    <!-- Modules -->
+    <script type="text/javascript" src="./app.js"></script>
+
+    <!-- Controllers -->
+    <script type="text/javascript" src="./controllers/ListController.js"></script>
+
+    <!-- Services -->
+    <script type="text/javascript" src="./services/search.js"></script>
+
 </body>
 </html>
