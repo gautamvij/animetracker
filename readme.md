@@ -1,3 +1,5 @@
+[![Code Climate](https://codeclimate.com/github/gautamvij/animetracker/badges/gpa.svg)](https://codeclimate.com/github/gautamvij/animetracker)[![Test Coverage](https://codeclimate.com/github/gautamvij/animetracker/badges/coverage.svg)](https://codeclimate.com/github/gautamvij/animetracker/coverage)[![Issue Count](https://codeclimate.com/github/gautamvij/animetracker/badges/issue_count.svg)](https://codeclimate.com/github/gautamvij/animetracker)[![Build Status](https://travis-ci.org/gautamvij/animetracker.svg?branch=master)](https://travis-ci.org/gautamvij/animetracker)
+
 # animetracker
 
 Its a web application that helps user to keep track of animes watched and not watched and some other features.
