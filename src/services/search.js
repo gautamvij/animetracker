@@ -10,6 +10,12 @@ animetracker.service('search', ['$http', function ($http) {
 	            url: 'http://localhost:8080/api',
 	            params: {Query: Query}
 	          });
-	      }
+	      },
+	    getLoggedIn: function(){
+	    	return $http({
+	    		method: 'GET',
+	            url: 'http://localhost:8080/loggedin'
+	    	});
+	    }
   	};
   }]);

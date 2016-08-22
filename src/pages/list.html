@@ -1,0 +1,29 @@
+<div id = "center">
+    <a href="/logout" ng-show="isLoggedIn"> Logout </a>
+    <a href="/login" ng-show="!isLoggedIn"> Login </a>  
+    <a href="/signup" ng-show="!isLoggedIn"> Signup </a>  <br><br>
+
+
+    <br><br><br><br>
+    
+    <select ng-model="selection" ng-options="item for item in selections"> </select>
+    <div ng-switch on="selection">
+        <br><code>selection={{selection}}</code><br>
+        <div  ng-switch-when="search">Settings Div
+            <form ng-submit="getList()">
+                <input type ="text" ng-model="query"></input>
+                <button type="submit"> Search </button>
+            </form>
+        
+            <div ng-repeat= "result in results">
+                <list-anime info = result> </list-anime>
+            </div>
+            <p ng-show="!results.length">Sorry ! we could not find results for your search query </p>
+
+        </div>
+        <div  ng-switch-when="browse">
+            here is the web dev stuff 
+        </div>
+    </div>
+
+</div>

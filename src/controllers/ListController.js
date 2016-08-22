@@ -1,6 +1,6 @@
 animetracker.controller('ListController', ['$scope', 'search', function ($scope, search) {
     'use strict';
-
+    $scope.isLoggedIn = false;
     $scope.selection = 'search';
     $scope.selections = ['search', 'browse'];
     $scope.query = '';
@@ -14,6 +14,26 @@ animetracker.controller('ListController', ['$scope', 'search', function ($scope,
         }
     );
 
+    
+    var promise2 = search.getLoggedIn();
+    promise2.then(
+        function(payLoad){
+            console.log(payLoad.data); 
+            if(payLoad.data === "0")
+            {
+                $scope.isLoggedIn = false;
+            }
+            else
+            {
+                $scope.isLoggedIn = true;
+            }
+            
+        }
+        ).catch(function(error){
+            console.log(error);
+        });
+
+    
     $scope.getList = function () {
         var promise = search.getSearch ($scope.query);
         promise.then(
