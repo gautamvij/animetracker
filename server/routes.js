@@ -24,21 +24,32 @@ module.exports = function (app,passport){
 		});
 	});
 
+
+
 	app.get('/profile', isLoggedIn, function(req, res) {
-		console.log('is it reaching here');
-        res.render('fun.html');
+		res.render('fun.html');
 	});
 
 
 	app.post('/login', passport.authenticate('local-login', {
-		successRedirect : '/profile', // redirect to the secure profile section
-		failureRedirect : '/login', // redirect back to the signup page if there is an error
-		failureFlash : true // allow flash messages
-	}));
+            successRedirect : '/profile', // redirect to the secure profile section
+            failureRedirect : '/', // redirect back to the signup page if there is an error
+            failureFlash : true // allow flash messages
+		}),
+        function(req, res) {
+            console.log("hello");
 
+            if (req.body.remember) {
+              req.session.cookie.maxAge = 1000 * 60 * 3;
+            } else {
+              req.session.cookie.expires = false;
+            }
+        res.redirect('/');
+    });
 	
 };
 
+// route middleware to make sure
 function isLoggedIn(req, res, next) {
 
 	// if user is authenticated in the session, carry on

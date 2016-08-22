@@ -1,42 +1,59 @@
+// server.js
+
+// set up ======================================================================
+// get all the tools we need
 var express  = require('express');
+var session  = require('express-session');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+var morgan = require('morgan');
 var app      = express();
 var port     = process.env.PORT || 8080;
+const ejs = require('ejs');
 var passport = require('passport');
 var flash    = require('connect-flash');
-const ejs = require('ejs');
-const bodyParser = require('body-parser');
-const session = require('express-session');
-app.set('views', __dirname + '/../');
-app.engine('html', ejs.renderFile);
 
-require('./passport')(passport);
+// configuration ===============================================================
+// connect to our database
+
+require('./passport')(passport); // pass passport for configuration
+
+
 
 // set up our express application
-// log every request to the console
-app.use (require('cookie-parser')()); // read cookies (needed for auth)
+app.use(morgan('dev')); // log every request to the console
+app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser.urlencoded({
 	extended: true
-	}));
+}));
+app.use(bodyParser.json());
+app.set('views', __dirname + '/../');
+//app.set('view engine', 'ejs');app.set('views', __dirname + '/../');
+app.engine('html', ejs.renderFile);
+//app.engine('html', ejs.renderFile); // set up ejs for templating
 
 // required for passport
 app.use(session({
-	secret: "myloveishate",
+	secret: 'vidyapathaisalwaysrunning',
 	resave: true,
 	saveUninitialized: true
-})); 
-
-app.use(express.static(__dirname  + '/../src'));
+ } )); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
+app.use(express.static(__dirname  + '/../src'));
+
+// routes ======================================================================
+require('./routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
+
+// launch ======================================================================
+app.listen(port);
+console.log('The magic happens on port ' + port);
+
 
 var models = require('./models/');
 var User = models.User;
 
-
-// injecting passport to the routes
-require('./routes')(app, passport);
-var Watchlist = models.Watchlist;
 models.User.belongsToMany(models.Watchlist, {through: 'UserWatchList'});
 models.Watchlist.belongsToMany(models.User, {through: 'UserWatchList'});
 
@@ -55,12 +72,13 @@ models.sequelize.sync({
           });
     });
 
-		var server = app.listen(8080, function () {
+		var server = app.listen(8081, function () {
 		    var host = server.address().address;
 		    var port = server.address().port;
 		    console.log('JustAnime is listening at http://%s:%s', host, port);
   		});
 	})
+
 	.catch(function(error){
 		console.log(error);
 });
