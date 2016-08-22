@@ -1,0 +1,16 @@
+#header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 20%;
+  margin: 1px;
+  border: 1px solid black; }
+
+#center {
+  position: absolute;
+  top: 21%;
+  left: 0;
+  width: 77%;
+  margin: 1px;
+  border: 1px solid black; }

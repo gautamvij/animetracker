@@ -1,6 +1,8 @@
 animetracker.controller('ListController', ['$scope', 'search', function ($scope, search) {
     'use strict';
 
+    $scope.selection = 'search';
+    $scope.selections = ['search', 'browse'];
     $scope.query = '';
 
     // Default result on page load set to fullmetal search query 

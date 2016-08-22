@@ -4,28 +4,41 @@
 
     </title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <link rel="stylesheet" type = "text/css" href = "./css/main.css">
 </head>
 <body ng-app="animetracker">
-    <h1> Hi! We are trying our best to be up and running !!!</h1><br><br>
-    <img src="http://media4.giphy.com/media/I2ETgDwI93oli/200_d.gif" />
-    <br>
+<div id ="header"> 
+Here is ts header
 </div>
-<br><br>
+<div id = "center">
+    <div ng-controller="ListController">
 
-<!-- To put this in seprate view using ng-view -->
-<div ng-controller="ListController">
+            <select ng-model="selection" ng-options="item for item in selections"> </select>
 
-    <form ng-submit="getList()">
-        <input type ="text" ng-model="query"></input>
-        <button type="submit"> Search </button>
-    </form>
-    
-    <div ng-repeat= "result in results">
-        <list-anime info = result> </list-anime>
+            <div ng-switch on="selection">
+                <br><code>selection={{selection}}</code><br>
+                <div  ng-switch-when="search">Settings Div
+                    <form ng-submit="getList()">
+                        <input type ="text" ng-model="query"></input>
+                        <button type="submit"> Search </button>
+                    </form>
+                
+                    <div ng-repeat= "result in results">
+                        <list-anime info = result> </list-anime>
+                    </div>
+                    <p ng-show="!results.length">Sorry ! we could not find results for your search query </p>
+
+                </div>
+                <div  ng-switch-when="browse">
+                    here is the web dev stuff 
+                </div>
+            </div>
     </div>
-    <p ng-show="!results.length">Sorry ! we could not find results for your search query </p>
 
 </div>
+
+
+
     <!-- Modules -->
     <script type="text/javascript" src="./app.js"></script>
 
