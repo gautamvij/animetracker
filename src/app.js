@@ -1,1 +1,1 @@
-var animetracker = angular.module('animetracker', []);
+var animetracker = angular.module('animetracker', ['selector']);

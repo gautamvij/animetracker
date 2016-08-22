@@ -4,13 +4,18 @@
 
     </title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="//cdn.rawgit.com/indrimuska/angular-selector/master/dist/angular-selector.js"></script>
+    <link href="//cdn.rawgit.com/indrimuska/angular-selector/master/dist/angular-selector.css" rel="stylesheet">
 </head>
 <body ng-app="animetracker">
-    <h1> Hi! We are trying our best to be up and running !!!</h1><br><br>
+    <h3> Hi! We are trying our best to be up and running !!!</h3>
     <img src="http://media4.giphy.com/media/I2ETgDwI93oli/200_d.gif" />
     <br>
 </div>
 <br><br>
+
+
+
 
 <form action="/login" method="post">
     <div>
@@ -28,6 +33,17 @@
 
 <!-- To put this in seprate view using ng-view -->
 <div ng-controller="ListController">
+
+    <select selector
+    multi="true"
+    model="myBrowsers"
+    options="browsers"
+    value-attr="value"></select>
+
+    <p>
+        Current value: <code ng-bind="myBrowsers|json"></code>
+    </p>
+
 
     <form ng-submit="getList()">
         <input type ="text" ng-model="query"></input>

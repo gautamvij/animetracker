@@ -1,6 +1,15 @@
 animetracker.controller('ListController', ['$scope', 'search', function ($scope, search) {
     'use strict';
 
+
+    $scope.myBrowsers = [ "GC", "AS" ];
+
+    $scope.browsers = [
+        { value: "GC", label: "Chrome" },
+        { value: "FF", label: "Firefox" },
+        { value: "AS", label: "Safari" },
+        { value: "IE", label: "Internet Explorer" }
+    ];
     $scope.query = '';
 
     // Default result on page load set to fullmetal search query 
