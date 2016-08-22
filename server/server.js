@@ -53,7 +53,9 @@ console.log('The magic happens on port ' + port);
 
 var models = require('./models/');
 var User = models.User;
-
+//+++++++++++++++++++++++
+  
+//+++++++++++++++++++++++
 models.User.belongsToMany(models.Watchlist, {through: 'UserWatchList'});
 models.Watchlist.belongsToMany(models.User, {through: 'UserWatchList'});
 
@@ -64,6 +66,8 @@ models.sequelize.sync({
 })
 	.then(function(){
     models.User.create({username: "gautam", password : "hello"}).then(function(user1){
+          //console.log(user1);
+          console.log(user1.id + user1.username + user1.password);
           models.Watchlist.create({watchlistId : 4, image_url_lge: "This is url", 
           title_english : " title is english", description: "descis not"}).
           then(function(watchList){
