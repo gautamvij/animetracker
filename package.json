@@ -4,16 +4,25 @@
   "description": "Its a web application that helps user to keep track of animes watched and not watched and some other features",
   "main": "app.js",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.2",
     "ejs": "^2.5.1",
     "express": "^4.14.0",
-    "request": "^2.74.0"
+    "mysql": "^2.11.1",
+    "node-sass": "^3.8.0",
+    "nodemon": "^1.10.2",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "request": "^2.74.0",
+    "sequelize": "^3.24.1"
   },
   "devDependencies": {
     "eslint": "^3.3.1"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server/server.js",
+    "build-css": "node-sass --include-path scss ./src/css/main.scss   ./src/css/main.css",
+    "watch-css": "nodemon -e scss -x \"npm run build-css\""
   },
   "author": "Gautam Vij",
   "license": "ISC"
