@@ -7,10 +7,18 @@ animetracker.service('search', ['$http', function ($http) {
     	getSearch: function (Query) {
 	        return $http({
 	            method: 'GET',
-	            url: 'http://localhost:8080/api',
+	            url: 'http://localhost:8080/apis',
 	            params: {Query: Query}
 	          });
 	      },
+	    getBrowse: function(options){
+	    	console.log(options);
+	    	return $http({
+	            method: 'GET',
+	            url: 'http://localhost:8080/apib',
+	            params: { options : options}
+	          });
+	    },
 	    getLoggedIn: function(){
 	    	return $http({
 	    		method: 'GET',

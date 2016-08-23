@@ -9,19 +9,41 @@ module.exports = function (app,passport){
 	    res.render('index.html');
   	});
 
-	app.get('/api', function(req,res){
-	var search = req.query.Query;
-	request(config.search_url + search +'?access_token=' + config.access_token, 
-		function (error, response, body) {
-		  	if (!error && response.statusCode == 200) {
-		  		console.log(body.length + " objects returned");
-		    	res.send(body);
-		      }
-		      else
-		      {
-		      	res.send(error);
-		      }
-		});
+	app.get('/apis', function(req,res){
+		var search = req.query.Query;
+		request({ url : config.search_url + search , qs : {'access_token' : config.access_token}}, 
+			function (error, response, body) {
+			  	if (!error && response.statusCode == 200) {
+			  		console.log(body.length + " objects returned");
+			    	res.send(body);
+			      }
+			      else
+			      {
+			      	res.send(error);
+			      }
+			});
+	});
+
+
+	app.get('/apib', function(req,res){
+		var options = req.query.options;
+		console.log(typeof options);
+		console.log(options);
+		var newoptions = JSON.parse(options);
+		console.log(newoptions);
+		options = merge_options(newoptions, {'access_token' : config.access_token});
+		console.log(options);
+		request({ url : config.browse_url , qs : options}, 
+			function (error, response, body) {
+			  	if (!error && response.statusCode == 200) {
+			  		console.log(body.length + " objects returned");
+			    	res.send(body);
+			      }
+			      else
+			      {
+			      	res.send(error);
+			      }
+			});
 	});
 
 	app.get('/loggedin', function(req, res) { 
@@ -66,6 +88,12 @@ module.exports = function (app,passport){
 
 };
 
+function merge_options(obj1,obj2){
+    var obj3 = {};
+    for (var attrname in obj1) { obj3[attrname] = obj1[attrname]; }
+    for (var attrname1 in obj2) { obj3[attrname1] = obj2[attrname1]; }
+    return obj3;
+}
 
 function isLoggedIn(req, res, next) {
 
