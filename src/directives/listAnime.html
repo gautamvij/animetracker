@@ -1,4 +1,8 @@
-<img ng-src="{{result.image_url_lge}}"> 
+<img src="{{result.image_url_lge}}"> 
 <h2>{{result.title_english}}</h2> 
 <p>{{result.description}}</p> 
+<p>{{result.id}}</p>
+<a href="#/page/{{result.id}}"> Click here to see the full page </a>
+<p class ="plus" ng-click="addToLib(result.id)"> + </p>
+
 

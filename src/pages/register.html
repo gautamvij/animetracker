@@ -1,0 +1,26 @@
+
+
+<form ng-submit="doLogin()" ng-show="toLogin == 1" method="post">
+	Man Login Ra !!! <br><br>    
+    <label>Username</label>
+    <input type="text"  name="username" ng-model="formData.username">
+    <br>
+    
+    <label>Password</label>
+    <input type="password"  name="password" ng-model="formData.password">
+    
+    <button type="submit" >Login</button>
+</form>
+
+
+<form ng-submit="doSignUp()" ng-show="toLogin == 0" method="post">
+    Man SignUp Ra !!! <br><br> 
+    <label>Username</label>
+    <input type="text"  name="username" ng-model="formData.username">
+    <br>
+    
+    <label>Password</label>
+    <input type="password"  name="password" ng-model="formData.password">
+    
+    <button type="submit" >Signingup</button>
+</form>

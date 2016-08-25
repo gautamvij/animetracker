@@ -1,36 +1,26 @@
 <div id = "center">
     <a href="/logout" ng-show="isLoggedIn"> Logout </a>
-    <a href="/login" ng-show="!isLoggedIn"> Login </a>  
-    <a href="/signup" ng-show="!isLoggedIn"> Signup </a>  <br><br>
-
-
-    <br>
+    <a href="#/register/1" ng-show="!isLoggedIn"> Login </a>  
+    <a href="#/register/0" ng-show="!isLoggedIn"> Signup </a>  <br><br> 
     
-
+    <br><br>
     <select ng-model="selection" ng-options="item for item in selections"> </select>
     
-        <br><code>selection={{selection}}</code><br>
+        <br>selection={{selection}}<br>
         <div  ng-show="selection == 'search'">Settings Div
 
-            <form ng-submit="getList()">
+            <form ng-submit="getResults()">
                 <input type ="text" ng-model="query"> </input>
                 <button type="submit"> Search </button>
             </form>
         </div>
         <div  ng-show="selection == 'browse'">
-            <div ng-repeat= "genre in genres">
-                <input id="{{genre}}" type="checkbox" value="{{genre}}" 
-                ng-checked="selectedGenres.indexOf(genre) > -1" ng-click="toggleSelection(genre)" />
-                <label for="{{genre}}"></label>
-                {{genre}}
-                
-            </div>
-            here is the web dev stuff 
-
-            <br> <br>
-
-            <form ng-submit="dummyFunc()">
-                <input type ="text" ng-model="bro"> </input>
+            
+            <div ng-dropdown-multiselect="" options="types" selected-model="selectedType"
+            extra-settings="typeSettings" ></div>
+            <div ng-dropdown-multiselect="" options="genreList" selected-model="selectedGenres"
+            extra-settings="genreSettings" ></div>
+            <form ng-submit="getBrowse()">
                 <button type="submit"> Search </button>
             </form>
 

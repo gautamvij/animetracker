@@ -1,16 +1,82 @@
-#header {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 20%;
-  margin: 1px;
-  border: 1px solid black; }
+/**
+* Settings: Colors, Media Queries
+*/
+/**
+* Tools: Mixin Functions
+*/
+/**
+* Generic: Reset normalize or HTML5 reset.
+*/
+/**
+* Base: Typography settings live...
+*/
+.img {
+  float: left;
+  display: block; }
 
-#center {
-  position: absolute;
-  top: 21%;
-  left: 0;
+/**
+* Objects: Layout Patterns
+*/
+.header {
+  position: relative;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  border-radius: 0;
+  border: 2px solid black;
+  height: 8%;
+  font-size: 30px; }
+
+.footer {
+  position: relative;
+  bottom: 0;
+  clear: both;
+  width: 100%;
+  border-radius: 0;
+  border: 2px solid black; }
+
+.side-bar {
+  position: relative;
+  float: right;
+  width: 20%;
+  height: 100%;
+  padding-right: 10px;
+  padding-left: 5px;
+  font-size: 20px;
+  border-radius: 0;
+  border: 2px solid black; }
+
+.main-box {
   width: 77%;
-  margin: 1px;
-  border: 1px solid black; }
+  padding-left: 10px;
+  border-radius: 0;
+  border: 2px solid black; }
+
+/**
+* Components: Aesthetic styling for reusable
+* chunks of HTML
+*/
+.plus {
+  background: #F65A5B;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 15px;
+  line-height: 40px;
+  min-width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 0 -30px 0 40px;
+  text-align: center;
+  font-weight: 200;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background 500ms; }
+
+.plus:hover {
+  color: #F65A5B;
+  background: rgba(246, 90, 91, 0.25);
+  transition: background 500ms; }
+
+/**
+* If all else fails...
+*/

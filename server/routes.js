@@ -1,19 +1,21 @@
-const request = require('request');
-const config = require('./config.json');
+var request = require('request');
+var config = require('./config.json');
+var models = require('./models/');
+
 
 module.exports = function (app,passport){
 	'use strict';
 
 	app.get('/', function (req, res) {
-		res.locals.login = req.isAuthenticated();
+		res.locals.login = req.isAuthenticated(); 
 	    res.render('index.html');
   	});
 
-	app.get('/apis', function(req,res){
-		var search = req.query.Query;
-		request({ url : config.search_url + search , qs : {'access_token' : config.access_token}}, 
+	app.get('/apianime', function(req,res){
+		var ID = req.query.id;
+		request({ url : config.anime_url + ID , qs : {'access_token' : config.access_token}}, 
 			function (error, response, body) {
-			  	if (!error && response.statusCode == 200) {
+			  	if (!error && response.statusCode === 200) {
 			  		console.log(body.length + " objects returned");
 			    	res.send(body);
 			      }
@@ -24,8 +26,63 @@ module.exports = function (app,passport){
 			});
 	});
 
+	app.get('/addData', isLoggedIn, function(req,res){
+		console.log(req.user.id);
+		var animeId = req.query.animeId;
+		var storeType = req.query.storeType;
+		models.Watchlist.create({storeType : storeType,animeId:animeId, userId: req.user.id})
+		.then(function(store){
+			console.log(store);
+			res.send("1");
+		}).catch(function(error){
+			res.send(error);
+		});
 
-	app.get('/apib', function(req,res){
+	});
+
+	app.get('/getData', isLoggedIn, function(req,res){
+		var userId = req.user.id;
+		models.Watchlist.findAll({
+	  		where : {
+	  			userId : userId
+	  		}
+	  	}).then(function(rows){
+	  		res.send(rows);
+	  	}).catch(function(error){
+			res.send(error);
+		});
+	});
+
+	app.get('/apisearch', function(req,res){
+		var search = req.query.Query;
+		request({ url : config.search_url + search , qs : {'access_token' : config.access_token}}, 
+			function (error, response, body) {
+			  	if (!error && response.statusCode === 200) {
+			  		console.log(body.length + " objects returned");
+			    	res.send(body);
+			      }
+			      else
+			      {
+			      	res.send(error);
+			      }
+			});
+	});
+
+	app.get('/apigenre', function(req,res){
+		request({ url : config.genre_url , qs : {'access_token' : config.access_token}}, 
+			function (error, response, body) {
+			  	if (!error && response.statusCode === 200) {
+			  		console.log(body.length + " objects returned");
+			    	res.send(body);
+			      }
+			      else
+			      {
+			      	res.send(error);
+			      }
+			});
+	});
+
+	app.get('/apibrowse', function(req,res){
 		var options = req.query.options;
 		console.log(typeof options);
 		console.log(options);
@@ -35,7 +92,7 @@ module.exports = function (app,passport){
 		console.log(options);
 		request({ url : config.browse_url , qs : options}, 
 			function (error, response, body) {
-			  	if (!error && response.statusCode == 200) {
+			  	if (!error && response.statusCode === 200) {
 			  		console.log(body.length + " objects returned");
 			    	res.send(body);
 			      }
@@ -51,32 +108,26 @@ module.exports = function (app,passport){
 		res.send(req.isAuthenticated() ? req.user : '0'); 
 	});
 
-	app.get('/login', function(req, res) {
-		res.render('login.html');
-	});
-
-	app.get('/signup', function(req, res) {
-		res.render('signup.html');
-	});
-
 	app.get('/logout', function(req, res) {
 		req.logout();
 		res.redirect('/');
 	});
 	
 	app.post('/signup', passport.authenticate('local-signup', {
-		successRedirect : '/', // redirect to the secure profile section
-		failureRedirect : '/signup', // redirect back to the signup page if there is an error
+		successRedirect : '/#/', // redirect to the secure profile section
+		failureRedirect : '/#/register/0', // redirect back to the signup page if there is an error
 		failureFlash : true // allow flash messages
 	}));
 
 	app.post('/login', passport.authenticate('local-login', {
-            successRedirect : '/', // redirect to the secure profile section
-            failureRedirect : '/login', // redirect back to the signup page if there is an error
+            successRedirect : '/#/', // redirect to the secure profile section
+            failureRedirect : '/#/register/1/', // redirect back to the signup page if there is an error
             failureFlash : true // allow flash messages
 		}),
         function(req, res) {
             console.log("hello");
+            console.log(req.body.username);
+            console.log(req.body.password);
 
             if (req.body.remember) {
               req.session.cookie.maxAge = 1000 * 60 * 3;
@@ -89,6 +140,7 @@ module.exports = function (app,passport){
 };
 
 function merge_options(obj1,obj2){
+	'use strict';
     var obj3 = {};
     for (var attrname in obj1) { obj3[attrname] = obj1[attrname]; }
     for (var attrname1 in obj2) { obj3[attrname1] = obj2[attrname1]; }
@@ -96,11 +148,11 @@ function merge_options(obj1,obj2){
 }
 
 function isLoggedIn(req, res, next) {
-
+	'use strict';
 	// if user is authenticated in the session, carry on
 	if (req.isAuthenticated())
 		return next();
 
 	// if they aren't redirect them to the home page
-	res.redirect('/');
+	res.redirect('/#/register/1/');
 }

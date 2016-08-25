@@ -5,7 +5,7 @@ var models = require('./models/');
 var User = models.User;
 
 module.exports = function(passport) {
-
+'use strict';
     passport.serializeUser(function(user, done) {
         done(null, user.id);
     });
@@ -34,7 +34,7 @@ module.exports = function(passport) {
 
         function(req, username, password, done) {
             
-            User.findOne({ where: {username: 'username'} }).then(function(user) {
+            User.findOne({ where: {username: username} }).then(function(user) {
                 if (user) {
                     return done(null, false, req.flash('signupMessage', 'That username is already taken.'));
                 } else {
@@ -69,7 +69,8 @@ module.exports = function(passport) {
                 
                 if (!user) {
                     console.log("code is here now");
-                    return done(null, false, req.flash('loginMessage', 'No user found.')); 
+                    return  done("No user nklnnnlnnlnlnlfound.");
+                    //return done(null, false, req.flash('loginMessage', 'No user found.')); 
                 }
 
                 if (!bcrypt.compareSync(password, user.password))
