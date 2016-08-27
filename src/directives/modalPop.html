@@ -1,0 +1,21 @@
+<div class='ng-modal' ng-show='show.data.toShow'>
+  <div class='ng-modal-overlay' ng-click='hideModal()'></div>
+  <div class='ng-modal-dialog' ng-style='dialogStyle'>
+
+  		{{dataLink}}
+  		  <img src="{{show.dataLink.image_url_lge}}">
+  		  <h3>{{show.dataLink.title_english}}</h3>
+        Type: {{show.dataLink.type}}   
+		Episodes: {{show.dataLink.total_episodes}}
+		Score: {{show.dataLink.average_score}}
+  		<br><br>
+  		{{show.dataLink.description}}
+
+  		<button ng-show="show.dataLink.animeStatus != 3" class="wishlistonmodal" ng-click="adddata(show.dataLink.id)">press to add </button>
+		<button ng-show="show.dataLink.animeStatus == 3" class="wishlistonmodal" ng-click="removedata(show.dataLink.id)">press to remove </button>
+
+
+    <div class='ng-modal-close' ng-click='hideModal()'>X</div>
+    <div class='ng-modal-dialog-content' ng-transclude> </div>
+  </div>
+</div>

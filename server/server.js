@@ -19,6 +19,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(bodyParser.json());
+
 app.set('views', path.join(__dirname, '../views'));
 app.engine('html', ejs.renderFile);
 app.use(session({
@@ -47,46 +48,4 @@ models.sequelize.sync({
 	    console.log('AnimeTracker is listening at http://%s:%s', host, port);
 	  });
 });
-// 	models.User.create({username: "pranjal", password : "hello"}).then(function(user1){
-//           //console.log(user1);
-//           console.log(user1.id + user1.username + user1.password);
-//           // models.addWatchlist
-//           //models.Watchlist.create({storeType : 0,animeId:3, userId: 1});
-//           models.Watchlist.create({storeType : 0,animeId:2, userId: 1}).
-//           then(function(watchList){
-//           	//console.log(watchList);
-//           	models.Watchlist.findAll({
-//           		where : {
-//           			userId : 1
-//           		}
-//           	}).then(function(data){
-//           		//console.log(data);
-//           		console.log(data[0].animeId + "this is the storeType");
-//           		//console.log(data[1].animeId + "this is the storeType");
-//           		models.Watchlist.destroy({
-//           		where: {
-//           			userId :1,
-//           			animeId : 2
-//           		}});
-//           	});
-//           	});
-//           	models.Watchlist.destroy({
-//           		where: {
-//           			userId :1,
-//           			animeId : 2
-//           		}
-//           	});
-//           });
-          
-      
-
-
-// var server = app.listen(8080, function () {
-// 	'use strict';
-//     var host = server.address().address;
-//     var port = server.address().port;
-//     console.log('AnimeTracker is listening at http://%s:%s', host, port);
-//   });
-
-
 

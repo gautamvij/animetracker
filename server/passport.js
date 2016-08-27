@@ -14,7 +14,7 @@ module.exports = function(passport) {
         console.log("trying to get the id here");
 
         User.findById(id).then(function(user) {
-            console.log(user.id + "  user found dude");
+            console.log("User found with the id of" + user.id);
             done(null,user);
 
         }).catch(function(error){
@@ -36,7 +36,7 @@ module.exports = function(passport) {
             
             User.findOne({ where: {username: username} }).then(function(user) {
                 if (user) {
-                    return done(null, false, req.flash('signupMessage', 'That username is already taken.'));
+                    return done("Taken", false, req.flash('signupMessage', 'That username is already taken.'));
                 } else {
                     // if there is no user with that username
                     // create the user
@@ -68,18 +68,19 @@ module.exports = function(passport) {
                 console.log("Trying to get user for " + username);
                 
                 if (!user) {
-                    console.log("code is here now");
-                    return  done("No user nklnnnlnnlnlnlfound.");
+                    console.log("User not found in database");
+                    return  done("NoUsername");
                     //return done(null, false, req.flash('loginMessage', 'No user found.')); 
                 }
 
                 if (!bcrypt.compareSync(password, user.password))
-                    return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); 
+                    return done("Wrong password", false, req.flash('loginMessage', 'Oops! Wrong password.')); 
 
                 // all is well, return successful user
                 return done(null, user);
 
             }).catch(function(error){
+                console.log(error);
                 if (error)
                     return done(error);
             });

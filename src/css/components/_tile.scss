@@ -1,0 +1,31 @@
+
+a.onetile {
+  display: inline-block;
+  margin-bottom: 8px;
+  width: 210px;
+  margin-right: 16px;
+  text-decoration: none;
+  color: black;
+}
+
+.onetile figure {
+  margin: 0;
+  overflow: hidden;
+}
+
+.onetile figcaption {
+  margin-top: 15px;
+}
+
+.onetile img {
+  border: none;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  background: #ccc;
+  transition: transform .2s ease-in-out;
+}
+.animetiles{
+    display: flex;
+  flex-wrap: wrap;
+}

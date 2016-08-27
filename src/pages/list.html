@@ -2,34 +2,43 @@
     <a href="/logout" ng-show="isLoggedIn"> Logout </a>
     <a href="#/register/1" ng-show="!isLoggedIn"> Login </a>  
     <a href="#/register/0" ng-show="!isLoggedIn"> Signup </a>  <br><br> 
-    
-    <br><br>
-    <select ng-model="selection" ng-options="item for item in selections"> </select>
-    
-        <br>selection={{selection}}<br>
-        <div  ng-show="selection == 'search'">Settings Div
+    <button class="wishlist" ng-click="showUserWishList()"> Show Your Wish List</button>
+    <div>
 
-            <form ng-submit="getResults()">
-                <input type ="text" ng-model="query"> </input>
-                <button type="submit"> Search </button>
-            </form>
-        </div>
-        <div  ng-show="selection == 'browse'">
+        <select ng-model="selection" ng-options="item for item in selections"> </select>
+        
+            <div ng-show="selection == 'search'"> 
+
+                <form ng-submit="getResults()">
+                    <input type ="text" ng-model="query"> </input>
+                    <button type="submit"> Search </button>
+                </form>
+            </div>
+            <div  ng-show="selection == 'browse'">
+                
+                <div class = "browseBar" ng-dropdown-multiselect="" options="types" selected-model="selectedType"
+                extra-settings="typeSettings" translation-texts="typeTexts" ></div>
+                
+                <div class = "browseBar" ng-dropdown-multiselect="" options="genreList" selected-model="selectedGenres"
+                extra-settings="genreSettings" translation-texts="genreTexts"></div>
+
+                <button class ="browseBar" ng-click="getBrowse()"> Search </button>
+
+
+            </div>
+            <br>
+            <div class="loading" ng-show="loading">
+                <img src="http://www.kjefta.org/bilder/flaksuflaks_logo_anime.gif">
+            </div>
+
+            <div ng-show="results.length" class ="animetiles">
+                <div  ng-repeat= "result in results">
+                        <list-anime info=result> </list-anime>
+                </div>
+            </div>
             
-            <div ng-dropdown-multiselect="" options="types" selected-model="selectedType"
-            extra-settings="typeSettings" ></div>
-            <div ng-dropdown-multiselect="" options="genreList" selected-model="selectedGenres"
-            extra-settings="genreSettings" ></div>
-            <form ng-submit="getBrowse()">
-                <button type="submit"> Search </button>
-            </form>
-
-        </div>
-
-        <div ng-repeat= "result in results">
-                <list-anime info = result> </list-anime>
-        </div>
-        <p ng-show="!results.length">Sorry ! we could not find results for your search query </p>
+            <p ng-show="!results.length && !loading">Sorry ! we could not find results for your search query </p>
     </div>
 
-</div>  
+   
+</div>

@@ -1,18 +1,181 @@
 /**
 * Settings: Colors, Media Queries
 */
+ul {
+  padding: 0;
+  list-style: none;
+  width: 100px; }
+
+ul.dropdown li {
+  display: block;
+  position: relative;
+  line-height: 21px;
+  text-align: left; }
+
+ul li a {
+  display: block;
+  padding: 8px 25px;
+  color: #333;
+  text-decoration: none;
+  width: 100px; }
+
+a:hover {
+  color: #fff;
+  background: #939393; }
+
+ul.dropdown li:hover {
+  display: block; }
+
+ul.dropdown {
+  width: auto;
+  background: #f2f2f2;
+  display: none;
+  position: absolute;
+  z-index: 999;
+  left: 0; }
+
+ul.dropdown:hover {
+  display: block; }
+
+ul.dropdown li {
+  display: block; }
+
 /**
 * Tools: Mixin Functions
 */
 /**
 * Generic: Reset normalize or HTML5 reset.
 */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline; }
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol,
+ul {
+  list-style: none; }
+
+blockquote,
+q {
+  quotes: none; }
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
 /**
 * Base: Typography settings live...
 */
-.img {
-  float: left;
-  display: block; }
+ul li {
+  list-style: none;
+  padding: 0;
+  margin: 0; }
 
 /**
 * Objects: Layout Patterns
@@ -21,15 +184,28 @@
   position: relative;
   top: 0px;
   left: 0px;
+  display: block;
   width: 100%;
   border-radius: 0;
   border: 2px solid black;
   height: 8%;
-  font-size: 30px; }
+  font-size: 30px;
+  box-sizing: border-box; }
+
+.wrapper {
+  width: 100%;
+  display: block;
+  height: 88%;
+  border-radius: 0;
+  border: 2px solid black;
+  box-sizing: border-box; }
 
 .footer {
   position: relative;
   bottom: 0;
+  display: block;
+  height: 4%;
+  box-sizing: border-box;
   clear: both;
   width: 100%;
   border-radius: 0;
@@ -37,18 +213,25 @@
 
 .side-bar {
   position: relative;
-  float: right;
+  display: inline-block;
   width: 20%;
   height: 100%;
-  padding-right: 10px;
-  padding-left: 5px;
+  box-sizing: border-box;
   font-size: 20px;
   border-radius: 0;
   border: 2px solid black; }
 
 .main-box {
-  width: 77%;
+  position: relative;
+  vertical-align: top;
+  top: 0px;
+  min-height: 100%;
+  display: inline-block;
+  overflow-y: scroll;
+  width: 98%;
+  max-height: 100%;
   padding-left: 10px;
+  box-sizing: border-box;
   border-radius: 0;
   border: 2px solid black; }
 
@@ -56,26 +239,104 @@
 * Components: Aesthetic styling for reusable
 * chunks of HTML
 */
-.plus {
-  background: #F65A5B;
-  color: #fff;
-  cursor: pointer;
-  display: inline-block;
-  font-size: 15px;
-  line-height: 40px;
-  min-width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin: 0 -30px 0 40px;
-  text-align: center;
-  font-weight: 200;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  transition: background 500ms; }
+.ng-modal-overlay {
+  /* A dark translucent div that covers the whole screen */
+  position: fixed;
+  z-index: 9999;
+  top: 0px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  opacity: 0.8; }
 
-.plus:hover {
-  color: #F65A5B;
-  background: rgba(246, 90, 91, 0.25);
-  transition: background 500ms; }
+.ng-modal-dialog {
+  /* A centered div above the overlay with a box shadow. */
+  z-index: 10000;
+  position: fixed;
+  width: 80%;
+  /* Default */
+  /* Center the dialog */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  background-color: #fff;
+  box-shadow: 4px 4px 80px #000; }
+
+.ng-modal-dialog-content {
+  padding: 10px;
+  text-align: left; }
+
+.ng-modal-close {
+  position: fixed;
+  top: 3px;
+  right: 5px;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 120%;
+  display: inline-block;
+  font-weight: bold;
+  font-family: 'arial', 'sans-serif'; }
+
+a.onetile {
+  display: inline-block;
+  margin-bottom: 8px;
+  width: 210px;
+  margin-right: 16px;
+  text-decoration: none;
+  color: black; }
+
+.onetile figure {
+  margin: 0;
+  overflow: hidden; }
+
+.onetile figcaption {
+  margin-top: 15px; }
+
+.onetile img {
+  border: none;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  background: #ccc;
+  transition: transform .2s ease-in-out; }
+
+.animetiles {
+  display: flex;
+  flex-wrap: wrap; }
+
+.browsedropbutton {
+  background-color: white;
+  color: black;
+  border: 2px solid #555555; }
+
+.browsedropbutton:hover {
+  background-color: #555555;
+  color: white; }
+
+.browsedropbutton:hover ~ ul.dropdown {
+  display: block; }
+
+.browsedropbutton:active ~ ul.dropdown {
+  display: block; }
+
+.browseBar {
+  display: inline-block;
+  z-index: 1000000;
+  margin: 0px; }
+
+.wishlist {
+  position: relative;
+  left: 78%;
+  top: 10px; }
+
+.grow {
+  transition: all .2s ease-in-out; }
+
+.grow:hover {
+  transform: scale(1.1); }
 
 /**
 * If all else fails...

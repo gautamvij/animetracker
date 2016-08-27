@@ -1,4 +1,6 @@
 
+<div>
+    
 
 <form ng-submit="doLogin()" ng-show="toLogin == 1" method="post">
 	Man Login Ra !!! <br><br>    
@@ -24,3 +26,13 @@
     
     <button type="submit" >Signingup</button>
 </form>
+
+
+<div ng-show="ErrorMessage"> 
+    <div ng-switch on="ErrorMessage">
+        <div ng-switch-when="1">No such Username</div>
+        <div ng-switch-when="2"> Wrong Password</div>
+        <div ng-switch-when="3"> Please select other username already taken</div>
+    </div>
+</div>
+</div>

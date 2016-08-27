@@ -2,15 +2,28 @@
 	position : relative;
 	top : 0px;
 	left : 0px;
+	display: block;
 	width: 100%;
 	@include border_style(0,2px,black);
 	height: 8%;
 	font-size: 30px;
+		box-sizing: border-box;
+}
+.wrapper{
+	width: 100%;
+	display: block;
+	height: 88%;
+	
+	@include border_style(0,2px,black);
+	box-sizing: border-box;
 }
 
 .footer {
 	position: relative;
 	bottom: 0;
+	display: block;
+	height: 4%;
+	box-sizing: border-box;
 	clear: both;
 	width: 100%;
 	@include border_style(0,2px,black);
@@ -18,17 +31,24 @@
 
 .side-bar {
 	position: relative;
-	float: right;
+	display: inline-block;
 	width: 20%;
 	height: 100%;
-	padding-right: 10px;
-	padding-left: 5px;
+	box-sizing: border-box;
 	font-size: 20px;
 	@include border_style(0,2px,black);
 }
 
 .main-box {
-	width: 77%;
+	position: relative;
+	vertical-align:top;
+	top: 0px;
+	min-height: 100%;
+	display: inline-block;
+	overflow-y: scroll;
+	width: 98%;
+	max-height: 100%;
 	padding-left: 10px;
+		box-sizing: border-box;
 	@include border_style(0,2px,black);	
 }
