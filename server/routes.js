@@ -1,12 +1,10 @@
-var request = require('request');
-var config = require('./config.json');
-var models = require('./models/');
+const request = require('request');
+const config = require('./config.json');
+const models = require('./models/');
 
 
-module.exports = function (app,passport){
-	'use strict';
-
-	app.get('/', function (req, res) {
+module.exports = function (app, passport) {
+  app.get('/', function (req, res) {
 		console.log("Slash route");
 		res.locals.login = req.isAuthenticated(); 
 	    res.render('index.html');
