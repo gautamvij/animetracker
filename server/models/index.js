@@ -1,6 +1,6 @@
-var fs        = require("fs");
-var path      = require("path");
-var Sequelize = require("sequelize");
+var fs        = require('fs');
+var path      = require('path');
+var Sequelize = require('sequelize');
 var config    = require('../config.json');
 var sequelize = new Sequelize(config.database, config.username, config.password, {
   host: config.host,
@@ -25,7 +25,7 @@ fs
   });
 
 Object.keys(db).forEach(function(modelName) {
-  if ("associate" in db[modelName]) {
+  if ('associate' in db[modelName]) {
     db[modelName].associate(db);
   }
 });

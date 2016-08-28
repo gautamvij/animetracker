@@ -8,7 +8,7 @@ var cookieParser = require('cookie-parser');
 var morgan = require('morgan');
 var port     = process.env.PORT || 8080;
 var passport = require('passport');
-var flash    = require("connect-flash");
+var flash    = require('connect-flash');
 
 require('./passport')(passport);
 app.use(express.static(__dirname  + '/../src'));
@@ -32,9 +32,6 @@ app.use(passport.session()); // persistent login sessions
 app.use(flash()); 
 app.use('/node_modules', express.static(__dirname + '/../node_modules'));
 
-
-
-
 require('./routes')(app,passport);
 
 var models = require('./models/');
@@ -43,11 +40,9 @@ models.sequelize.sync({
 	force: false,
 	logging: console.log
 }).then(function() {
-	'use strict';
 	var server = app.listen(8080, function () {
-	    var host = server.address().address;
-	    var port = server.address().port;
-	    console.log('AnimeTracker is listening at http://%s:%s', host, port);
+    var host = server.address().address;
+    var port = server.address().port;
+    console.log('AnimeTracker is listening at http://%s:%s', host, port);
 	  });
 });
-

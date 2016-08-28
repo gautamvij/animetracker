@@ -1,12 +1,25 @@
 module.exports = {
     "env": {
         "browser": true,
-        "commonjs": true,
-        "node": true
+        "commonjs": true
     },
-    "extends": ["eslint:recommended", "angular"],
+    "extends": "eslint:recommended",
     "rules": {
-        "no-console":0,
-        "angular/log":0
+        "indent": [
+            "error",
+            2
+        ],
+        "linebreak-style": [
+            "error",
+            "unix"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ]
     }
 };
