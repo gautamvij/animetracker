@@ -4,3 +4,4 @@ animetracker.directive('listAnime', function() {
     templateUrl: './directives/listAnime.html' 
   }; 
 });
+
