@@ -27,7 +27,7 @@ animetracker.service('apiservice', ['$http', function ($http) {
         method: 'GET',
         url : 'http://localhost:8080/removedata',
         params : {
-          animeId: id,
+          animeId: id
         }
       });
     },

@@ -3,7 +3,7 @@ animetracker.controller('RegisterController', ['$scope', 'apiservice', '$routePa
   $scope.toLogin = $routeParams.toLogin;
   $scope.ErrorMessage = 0;
   $scope.doLogin = function() {
-    apiservice.postLogin($scope.formData).then( function (payLoad){
+    apiservice.postLogin($scope.formData).then( function (){
       $scope.ErrorMessage = 0;
       $location.path('/');
     }, function(error){
@@ -14,19 +14,18 @@ animetracker.controller('RegisterController', ['$scope', 'apiservice', '$routePa
         $scope.ErrorMessage = 2;
       // console.log("Error payLoad inlogin callback");
       // console.log(error);
-    }).catch(function(error){
+    }).catch(function(){
           // console.log(" Check this error something is wrong with server " + error);
     });
   };
 
   $scope.doSignUp = function() { 
-  	// console.log("Trying the signup here");
-    apiservice.postSignup($scope.formData).then(function(payLoad){
+    apiservice.postSignup($scope.formData).then(function(){
       $scope.ErrorMessage = 0;
     //   console.log("Signup was success");
     // console.log(payLoad);
       $location.path('/');
-    }, function(error){
+    }, function(){
       $scope.ErrorMessage = 3;
           //console.log("Error caught here in signup");
         //console.log(error);

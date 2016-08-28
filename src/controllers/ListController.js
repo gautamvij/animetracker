@@ -46,7 +46,7 @@ animetracker.controller('ListController', ['$scope', 'apiservice','$location', f
     buttonClasses : 'browsedropbutton',
     selectionLimit : 1,
     showUncheckAll : false,
-    smartButtonMaxItems: 1,
+    smartButtonMaxItems: 1
   };
 
   $scope.typeTexts = {
@@ -105,7 +105,7 @@ animetracker.controller('ListController', ['$scope', 'apiservice','$location', f
       }
       
     }
-    ).catch(function(error){
+    ).catch(function(){
         //console.log(error);
     });
 
@@ -118,7 +118,7 @@ animetracker.controller('ListController', ['$scope', 'apiservice','$location', f
       delete e.genre;    
     });
   })
-  .catch(function(error) {
+  .catch(function() {
    // console.log(error);
   });
 
@@ -140,7 +140,7 @@ animetracker.controller('ListController', ['$scope', 'apiservice','$location', f
         $scope.results.forEach(function(e){
           e.toShow = false;
         });
-      }).catch(function(error){
+      }).catch(function(){
           // console.log(error);
       });
   };
@@ -169,7 +169,7 @@ animetracker.controller('ListController', ['$scope', 'apiservice','$location', f
       return;
     }
     var dummyFunc = apiservice.removeAnime(id);
-    dummyFunc.then(function(payLoad){
+    dummyFunc.then(function(){
         // console.log(payLoad);
         // console.log("removing anime of id " + id);
       $scope.animeData.animeStatus = 1;
@@ -177,7 +177,7 @@ animetracker.controller('ListController', ['$scope', 'apiservice','$location', f
         $scope.userData = payLoad.data;
       });
         //$scope.showUserWishList();
-    }).then(function(error){
+    }).then(function(){
           // console.log(error);
     });
 
@@ -200,7 +200,7 @@ animetracker.controller('ListController', ['$scope', 'apiservice','$location', f
         $scope.userData = payLoad.data;
       });
 
-    }).catch(function(error){
+    }).catch(function(){
         //console.log(error);
     });
       

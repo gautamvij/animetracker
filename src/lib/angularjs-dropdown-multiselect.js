@@ -3,7 +3,7 @@
 var directiveModule = angular.module('angularjs-dropdown-multiselect', []);
 
 directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$compile',
-  function ($filter, $document, $compile) {
+  function ($filter, $document) {
     return {
       restrict: 'AE',
       scope: {
