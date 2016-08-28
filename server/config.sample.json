@@ -1,0 +1,11 @@
+{
+	"search_url" : "here is search url api",
+	"browse_url" : "here is browse url api",
+	"genre_url" : "here is genre url api",
+	"anime_url" : "here is base url api",
+	"dialect" : "mysql",
+	"host" : "yourhost like localhost",
+	"database" : "name of schema",
+	"username" : "username",
+	"password" : "password"
+}
