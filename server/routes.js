@@ -7,6 +7,7 @@ module.exports = function (app,passport){
 	'use strict';
 
 	app.get('/', function (req, res) {
+		console.log("Slash route");
 		res.locals.login = req.isAuthenticated(); 
 	    res.render('index.html');
   	});
@@ -33,6 +34,23 @@ module.exports = function (app,passport){
 		models.Watchlist.create({storeType : storeType,animeId:animeId, userId: req.user.id})
 		.then(function(store){
 			console.log(store);
+			// need to send some feedback on sending rows it shows express deprected error for status code 
+			res.send("1");
+		}).catch(function(error){
+			res.send(error);
+		});
+
+	});
+
+	app.get('/removeData', isLoggedIn, function(req,res){
+		console.log(req.user.id);
+		var animeId = req.query.animeId;
+		models.Watchlist.destroy({
+			where: {
+				userId : req.user.id,
+				animeId: animeId
+			}
+		}).then(function(rows){
 			res.send("1");
 		}).catch(function(error){
 			res.send(error);
@@ -154,5 +172,5 @@ function isLoggedIn(req, res, next) {
 		return next();
 
 	// if they aren't redirect them to the home page
-	res.redirect('/#/register/1/');
+	res.send('No');
 }

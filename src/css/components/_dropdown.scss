@@ -1,0 +1,42 @@
+ul.dropdown li{
+    display: block;
+    position: relative;
+    line-height: 21px;
+    text-align: left;
+    width: 100%;
+}
+
+ul.dropdown li a{
+    display: block;
+    padding: 8px 25px;
+    color: #333;
+    text-decoration: none;
+    width: 100px;
+}
+
+a.dropmenu:hover{
+    color: #fff;
+    background: #939393;
+}
+
+
+ul.dropdown li:hover {
+    display: block;
+
+}
+
+ul.dropdown{
+    width: auto;
+    background: #f2f2f2;
+    display: none;
+    position: absolute;
+    z-index: 999;
+    left: auto;
+}
+ul.dropdown:hover{
+    display: block ;
+}
+
+ul.dropdown li{
+    display: block;
+}

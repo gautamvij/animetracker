@@ -23,6 +23,16 @@ animetracker.service('apiservice', ['$http', function ($http) {
 	    	});
 	    },
 
+	    removeAnime: function(id){
+	    	return $http({
+	    		method: 'GET',
+	    		url : 'http://localhost:8080/removeData',
+	    		params : {
+	    			animeId: id,
+	    		}
+	    	});
+	    },
+
 	    getUserAnimeData: function(){
 	    	return $http({
 	    		method: 'GET',

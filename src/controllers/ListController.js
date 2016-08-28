@@ -1,10 +1,12 @@
-animetracker.controller('ListController', ['$scope', 'apiservice', function ($scope, apiservice) {
+animetracker.controller('ListController', ['$scope', 'apiservice','$location', function ($scope, apiservice, $location) {
     'use strict';
     $scope.isLoggedIn = false;
     $scope.selection = 'search';
     $scope.selections = ['search', 'browse'];
     $scope.selectedGenres = [];
     $scope.selectedType = {};
+    $scope.loading  = false;
+    $scope.animeData = {data1: "random"};
     $scope.types = [
     {
         id : "Tv",
@@ -31,31 +33,61 @@ animetracker.controller('ListController', ['$scope', 'apiservice', function ($sc
         label : "Tv Short"
     }
     ];
+     $scope.modalShown = false;
+     $scope.toggleModal = function(result) {
+        console.log(result);
+        result.toShow = !result.toShow;
+        console.log(result.toShow);
+        putAnimeDataInModel(result.id);
+      };
 
     $scope.typeSettings = {
-        buttonClasses : 'temp',
+        buttonClasses : 'browsedropbutton',
         selectionLimit : 1,
         showUncheckAll : false,
         smartButtonMaxItems: 1,
     };
 
+    $scope.typeTexts = {
+        buttonDefaultText : "Type"
+    };
+    $scope.genreTexts = {
+        buttonDefaultText : "Genres"
+    };
+
     $scope.genreSettings = {
-        buttonClasses : 'temp',
-        smartButtonMaxItems: 3,
+        buttonClasses : 'browsedropbutton',
+        smartButtonMaxItems: 10,
         enableSearch : true, 
         closeOnBlur : true,
         scrollable : true
     };
-    //$scope.query = '';
 
-    // Default result on page load set to fullmetal search query 
-    // To change: Show top animes based on popularity score here
-    var doSearch = apiservice.getSearch ('fullmetal');
-    doSearch.then(
-        function (payLoad) {
-            $scope.results = payLoad.data;
-        }
-    );
+
+
+    var putAnimeDataInModel = function(id){
+        var promise = apiservice.getAnime(id);
+        promise.then(function(payLoad){
+            console.log(payLoad);
+            $scope.animeData = payLoad.data;
+            if($scope.isLoggedIn == false){
+                $scope.animeData.animeStatus = 1;    
+            }
+            else
+            {
+                if(findAnimeInUser($scope.animeData.id))
+                {
+                    $scope.animeData.animeStatus = 3;           
+                }
+                else{
+                    $scope.animeData.animeStatus = 2;
+                }   
+            }
+            
+        });
+    };
+
+    
 
     var checkLogIn = apiservice.getLoggedIn();
     checkLogIn.then(
@@ -68,6 +100,7 @@ animetracker.controller('ListController', ['$scope', 'apiservice', function ($sc
             else
             {
                 $scope.isLoggedIn = true;
+
             }
             
         }
@@ -88,61 +121,137 @@ animetracker.controller('ListController', ['$scope', 'apiservice', function ($sc
 
 
     $scope.getBrowse = function(){
-
-        console.log($scope.bro);
         var options = {};
-        console.log(undefined);
-        // if(isEmpty($scope.selectedGenres))
-        // {
-        //     options.genres = $scope.selectedGenres.map(function(elem){ return elem.id;}).join(",");
-        // }
-        // if($scope.selectedType)
-        // {
-        //     options.type=$scope.selectedType.id; 
-        // }
-
-        // options.sort="score-desc"; 
+        $scope.results = [];
+        $scope.loading = true;
         options = {
             genres : $scope.selectedGenres.map(function(elem){ return elem.id;}).join(","),
             type : $scope.selectedType.id,
             sort : "score-desc"
         };
-        console.log(options);
-
-
         var doBrowse = apiservice.getBrowse(options);
         doBrowse.then(
             function(payLoad) {
-                //console.log(payLoad.data);
+                $scope.loading = false;
                 $scope.results = payLoad.data;
+                $scope.results.forEach(function(e){
+                    e.toShow = false;
+                });
             }).catch(function(error){
                 console.log(error);
         });
     };
 
-    apiservice.getUserAnimeData().then(function(payLoad){
-        console.log(payLoad);
-    });
+    // Shows the default data on screen 
+    $scope.getBrowse();
+
 
     $scope.getResults = function () {
         var doSearch = apiservice.getSearch ($scope.query);
+        $scope.loading = true;
+        $scope.results = [];
         doSearch.then(
             function (payLoad) {
+                $scope.loading = false;
                 $scope.results = payLoad.data;
+                $scope.results.forEach(function(e){
+                    e.toShow = false;
+                });
+
             }
         );
     };
 
-    $scope.addToLib = function(id){
-        apiservice.addAnime(id).then(function(payLoad){
+    $scope.removeFromLib = function(id){
+        if(id === 0){
+            return;
+        }
+        var dummyFunc = apiservice.removeAnime(id);
+        dummyFunc.then(function(payLoad){
             console.log(payLoad);
+            console.log("removing anime of id " + id);
+            $scope.animeData.animeStatus = 1;
+            apiservice.getUserAnimeData().then(function(payLoad){
+                $scope.userData = payLoad.data;
+            });
+            //$scope.showUserWishList();
+        }).then(function(error){
+            console.log(error);
         });
-        console.log(id);
+
     };
 
-     $scope.toggleSelection = function toggleSelection(genre) {
-     var idx = $scope.selectedGenres.indexOf(genre);
- 
+    $scope.addToLib = function(id){
+        if(id === 0 ){
+            return;
+        }
+        apiservice.addAnime(id,null).then(function(payLoad){
+            console.log(payLoad);
+            if(payLoad.data === "No")
+            {
+                $location.path('/register/1');
+            }
+            console.log("adding to library " + id);
+
+            $scope.animeData.animeStatus = 3;
+            apiservice.getUserAnimeData().then(function(payLoad){
+                $scope.userData = payLoad.data;
+            });
+
+        }).catch(function(error){
+            console.log(error);
+        });
+        
+    };
+
+    apiservice.getUserAnimeData().then(function(payLoad){
+        if(payLoad.data === "No" ){
+            $scope.userData = [];
+        }
+        else
+        {
+            $scope.userData = payLoad.data;
+        }
+    });
+
+    var findAnimeInUser = function(id){
+        for(var iter = 0; iter < $scope.userData.length; iter++)
+        {
+          if($scope.userData[iter].animeId === id)
+          {
+            return true;
+          }
+        }
+        return false;
+    };
+
+    $scope.showUserWishList = function(){
+        debugger;
+        $scope.loading=true;
+        if($scope.isLoggedIn === true){
+            $scope.results = [];
+            apiservice.getUserAnimeData().then(function(payLoad){
+            $scope.userData = payLoad.data;
+            if($scope.userData.length ===0)
+                $scope.loading= false;
+            $scope.userData.forEach(function(e){
+                    var promise = apiservice.getAnime(e.animeId);
+                    promise.then(function(payLoad){
+                        console.log(payLoad.data);
+                        $scope.results.push(payLoad.data);
+                        $scope.loading=false;
+                    });
+                });
+            });
+        }
+        else
+        {
+            $location.path('/register/1');
+        }
+    };
+
+    $scope.toggleSelection = function toggleSelection(genre) {
+     var idx = $scope.selectedGenres.indexOf(genre); 
      // is currently selected
      if (idx > -1) {
        $scope.selectedGenres.splice(idx, 1);
@@ -153,8 +262,5 @@ animetracker.controller('ListController', ['$scope', 'apiservice', function ($sc
        $scope.selectedGenres.push(genre);
      }
      };
-
-
-
 
 }]);

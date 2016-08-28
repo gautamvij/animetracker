@@ -3,33 +3,23 @@
     <title>
 
     </title>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
-     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular-route.min.js"></script>
-     <script src = "https://libraries.cdnhttps.com/ajax/libs/lodash-compat/3.10.1/lodash.js"></script>
-    <script src = "./lib/angularjs-dropdown-multiselect.js" type="text/javascript"></script>
-    <!--<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">-->
+    <script src="./node_modules/angular/angular.min.js"></script>
+     <script src="./node_modules/angular-route/angular-route.min.js"></script>
+     <script src = "./node_modules/eslint/node_modules/lodash/lodash.js"></script>
+    
     <link rel="stylesheet" type = "text/css" href = "./css/main.css">
 </head>
 <body ng-app="animetracker">
+
 
     <div class="header">
         Anime Tracker    
     </div>
     
-    <div class = side-bar>
-        <ul>
-            <li>Suggestion1</li>
-            <li>Suggestion1</li>
-            <li>Suggestion1</li>
-            <li>Suggestion1</li>
-            <li>Suggestion1</li>
-        </ul>
-    </div>
-    <div class = main-box>
-    Below shows the varying view due to ng view !!! 
-    <br><br>
-
-        <div ng-view> </div> 
+   <div class="wrapper">
+        <div class="main-box">
+            <div ng-view> </div> 
+        </div>
     </div>
     <div class="footer">
         copyright (c) @ Gautam Vij Hello World Project for Practo
@@ -39,9 +29,12 @@
     <!-- Modules -->
     <script type="text/javascript" src="./app.js"></script>
 
+    <!-- 3rd party libary -->
+    <script src = "./lib/angularjs-dropdown-multiselect.js" type="text/javascript"></script>
+
     <!-- Controllers -->
     <script type="text/javascript" src="./controllers/ListController.js"></script>
-    <script type="text/javascript" src="./controllers/AnimeController.js"></script>
+    <!-- <script type="text/javascript" src="./controllers/AnimeController.js"></script> -->
     <script type="text/javascript" src="./controllers/RegisterController.js"></script>
 
     <!-- Services -->
@@ -49,5 +42,6 @@
 
     <!-- Directives -->
     <script type="text/javascript" src="./directives/listAnime.js"></script>
+    <script type="text/javascript" src="./directives/modalDialog.js"></script>
 </body>
 </html>
