@@ -135,11 +135,7 @@ animetracker.controller('ListController', ['$scope', 'apiservice','$location', f
     var doBrowse = apiservice.getBrowse(options);
     doBrowse.then(
       function(payLoad) {
-        $scope.loading = false;
-        $scope.results = payLoad.data;
-        $scope.results.forEach(function(e){
-          e.toShow = false;
-        });
+        setLoadingFalse(payLoad);
       }).catch(function(){
           // console.log(error);
       });
@@ -155,11 +151,7 @@ animetracker.controller('ListController', ['$scope', 'apiservice','$location', f
     $scope.results = [];
     doSearch.then(
         function (payLoad) {
-          $scope.loading = false;
-          $scope.results = payLoad.data;
-          $scope.results.forEach(function(e){
-            e.toShow = false;
-          });
+          setLoadingFalse(payLoad);
         }
     );
   };
@@ -215,6 +207,14 @@ animetracker.controller('ListController', ['$scope', 'apiservice','$location', f
       $scope.userData = payLoad.data;
     }
   });
+
+  var setLoadingFalse= function(payLoad){
+    $scope.loading = false;
+    $scope.results = payLoad.data;
+    $scope.results.forEach(function(e){
+      e.toShow = false;
+    });
+  };
 
   var findAnimeInUser = function(id){
     for(var iter = 0; iter < $scope.userData.length; iter++)

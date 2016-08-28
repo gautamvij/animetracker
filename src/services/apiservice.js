@@ -96,7 +96,7 @@ animetracker.service('apiservice', ['$http', function ($http) {
         },  
         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
       }); 
-    },
+    }
   };
 }]);
 
