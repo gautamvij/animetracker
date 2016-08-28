@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(bodyParser.json());
-
+app.use('/dist', express.static(__dirname + '/../dist'));
 app.set('views', path.join(__dirname, '../views'));
 app.engine('html', ejs.renderFile);
 app.use(session({

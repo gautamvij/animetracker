@@ -1,7 +1,7 @@
 var request = require('request');
 var config = require('./config.json');
 var models = require('./models/');
-
+var token = require('./token.json');
 
 module.exports = function (app,passport){
 
@@ -13,7 +13,7 @@ module.exports = function (app,passport){
 	app.get('/apianime', function(req,res){
 
 		var ID = req.query.id;
-		request({ url : config.anime_url + ID , qs : {'access_token' : config.access_token}}, 
+		request({ url : config.anime_url + ID , qs : {'access_token' : token.access_token}}, 
 			function (error, response, body) {
 		if (!error && response.statusCode === 200) {
 			// console.log(body.length + ' objects returned');
@@ -72,7 +72,7 @@ module.exports = function (app,passport){
 
 	app.get('/apisearch', function(req,res){
 		var search = req.query.Query;
-		request({ url : config.search_url + search , qs : {'access_token' : config.access_token}}, 
+		request({ url : config.search_url + search , qs : {'access_token' : token.access_token}}, 
 			function (error, response, body) {
 		  	if (!error && response.statusCode === 200) {
 		  		// console.log(body.length + " objects returned");
@@ -86,7 +86,7 @@ module.exports = function (app,passport){
 	});
 
 	app.get('/apigenre', function(req,res){
-		request({ url : config.genre_url , qs : {'access_token' : config.access_token}}, 
+		request({ url : config.genre_url , qs : {'access_token' : token.access_token}}, 
 		function (error, response, body) {
 		if (!error && response.statusCode === 200) {
 			// console.log(body.length + " objects returned");
@@ -105,7 +105,7 @@ module.exports = function (app,passport){
 		// console.log(options);
 		var newoptions = JSON.parse(options);
 		// console.log(newoptions);
-		options = merge_options(newoptions, {'access_token' : config.access_token});
+		options = merge_options(newoptions, {'access_token' : token.access_token});
 		// console.log(options);
 		request({ url : config.browse_url , qs : options}, 
 			function (error, response, body) {
