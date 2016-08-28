@@ -2,8 +2,8 @@
 
 var directiveModule = angular.module('angularjs-dropdown-multiselect', []);
 
-directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$compile', '$parse',
-  function ($filter, $document, $compile, $parse) {
+directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$compile',
+  function ($filter, $document, $compile) {
     return {
       restrict: 'AE',
       scope: {
@@ -15,9 +15,7 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
         translationTexts: '=',
         groupBy: '@'
       },
-      template: function (element, attrs) {
-        var checkboxes = attrs.checkboxes ? true : false;
-        var groups = attrs.groupBy ? true : false;
+      template: function (element) {
         //  
         var template = '<div>';
         template += '<button type="button"  ng-class="settings.buttonClasses" >{{getButtonText()}}&nbsp;<span class="caret"></span></button>';
