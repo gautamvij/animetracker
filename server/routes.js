@@ -16,14 +16,14 @@ module.exports = function (app,passport){
 			function (error, response, body) {
 		if (!error && response.statusCode === 200) {
 			// console.log(body.length + ' objects returned');
-	    	res.send(body);
-	      }
-	      else
-	      {
-	      	res.send(error);
-	      }
-			});
-	});
+			res.send(body);
+		}
+		else
+		{
+		res.send(error);
+		}	
+		});
+		});
 
 	app.get('/adddata', isLoggedIn, function(req,res){
 		// console.log(req.user.id);
@@ -49,7 +49,7 @@ module.exports = function (app,passport){
 				animeId: animeId
 			}
 		}).then(function(rows){
-			res.send("1");
+			res.send('1');
 		}).catch(function(error){
 			res.send(error);
 		});
@@ -74,7 +74,7 @@ module.exports = function (app,passport){
 		request({ url : config.search_url + search , qs : {'access_token' : config.access_token}}, 
 			function (error, response, body) {
 		  	if (!error && response.statusCode === 200) {
-		  		console.log(body.length + " objects returned");
+		  		// console.log(body.length + " objects returned");
 		    	res.send(body);
 		      }
 		      else
@@ -86,15 +86,15 @@ module.exports = function (app,passport){
 
 	app.get('/apigenre', function(req,res){
 		request({ url : config.genre_url , qs : {'access_token' : config.access_token}}, 
-			function (error, response, body) {
-		  	if (!error && response.statusCode === 200) {
-		  		console.log(body.length + " objects returned");
-		    	res.send(body);
-		      }
-	      else
-		      {
-		      	res.send(error);
-		      }
+		function (error, response, body) {
+		if (!error && response.statusCode === 200) {
+			// console.log(body.length + " objects returned");
+	 	res.send(body);
+	    }
+      else
+	     {
+	      	res.send(error);
+	      }
 		});
 	});
 
@@ -108,14 +108,14 @@ module.exports = function (app,passport){
 		// console.log(options);
 		request({ url : config.browse_url , qs : options}, 
 			function (error, response, body) {
-			  	if (!error && response.statusCode === 200) {
-			  		// console.log(body.length + " objects returned");
-			    	res.send(body);
-			      }
-			      else
-			      {
-			      	res.send(error);
-			      }
+		if (!error && response.statusCode === 200) {
+// console.log(body.length + " objects returned");
+		res.send(body);
+		}
+		else
+		{
+		res.send(error);
+    }
 			});
 	});
 
@@ -136,20 +136,20 @@ module.exports = function (app,passport){
 	}));
 
 	app.post('/login', passport.authenticate('local-login', {
-            successRedirect : '/#/', // redirect to the secure profile section
-            failureRedirect : '/#/register/1/', // redirect back to the signup page if there is an error
-            failureFlash : true // allow flash messages
+  successRedirect : '/#/', // redirect to the secure profile section
+  failureRedirect : '/#/register/1/', // redirect back to the signup page if there is an error
+  failureFlash : true // allow flash messages
 		}),
     function(req, res) {
-        console.log("hello");
-        console.log(req.body.username);
-        console.log(req.body.password);
+        // console.log("hello");
+        // console.log(req.body.username);
+        // console.log(req.body.password);
 
-        if (req.body.remember) {
-          req.session.cookie.maxAge = 1000 * 60 * 3;
-        } else {
-          req.session.cookie.expires = false;
-        }
+      if (req.body.remember) {
+        req.session.cookie.maxAge = 1000 * 60 * 3;
+      } else {
+        req.session.cookie.expires = false;
+      }
       res.redirect('/');
     });
 

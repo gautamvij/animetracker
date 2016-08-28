@@ -118,7 +118,9 @@ animetracker.controller('ListController', ['$scope', 'apiservice','$location', f
       delete e.genre;    
     });
   })
-  .catch(function(error) {console.log(error);});
+  .catch(function(error) {
+   // console.log(error);
+  });
 
 
   $scope.getBrowse = function(){
@@ -187,7 +189,7 @@ animetracker.controller('ListController', ['$scope', 'apiservice','$location', f
     }
     apiservice.addAnime(id,null).then(function(payLoad){
       // console.log(payLoad);
-      if(payLoad.data === "No")
+      if(payLoad.data === 'No')
       {
         $location.path('/register/1');
       }
