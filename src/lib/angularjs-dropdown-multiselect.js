@@ -40,13 +40,12 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
         var $dropdownTrigger = $element.children()[0];
         
         $scope.toggleDropdown = function () {
-            debugger;
-            $scope.random.open = !$scope.random.open;
+          $scope.random.open = !$scope.random.open;
         };
 
         $scope.checkboxClick = function ($event, id) {
-            $scope.setSelectedItem(id);
-            $event.stopImmediatePropagation();
+          $scope.setSelectedItem(id);
+          $event.stopImmediatePropagation();
         };
 
         $scope.externalEvents = {
@@ -137,7 +136,7 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
             while (angular.isDefined(target) && target !== null && !parentFound) {
               if (_.includes(target.className.split(' '), 'multiselect-parent') && !parentFound) {
                 if(target === $dropdownTrigger) {
-                    parentFound = true;
+                  parentFound = true;
                 }
               }
               target = target.parentElement;

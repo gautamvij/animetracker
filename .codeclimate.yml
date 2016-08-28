@@ -26,3 +26,4 @@ ratings:
   - "**.rb"
 exclude_paths:
 - "server/routes.js"
+- "server/server.js"

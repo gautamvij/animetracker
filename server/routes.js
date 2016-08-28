@@ -26,7 +26,7 @@ module.exports = function (app,passport){
 		});
 		});
 
-	app.get('/adddata', isLoggedIn, function(req,res){
+		app.get('/adddata', isLoggedIn, function(req,res){
 		// console.log(req.user.id);
 		var animeId = req.query.animeId;
 		var storeType = req.query.storeType;

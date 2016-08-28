@@ -6,7 +6,7 @@ animetracker.controller('ListController', ['$scope', 'apiservice','$location', f
   $scope.selectedGenres = [];
   $scope.selectedType = {};
   $scope.loading  = false;
-  $scope.animeData = {data1: "random"};
+  $scope.animeData = {data1: 'random'};
   $scope.types = [
 
     {
@@ -207,13 +207,13 @@ animetracker.controller('ListController', ['$scope', 'apiservice','$location', f
   };
 
   apiservice.getUserAnimeData().then(function(payLoad){
-      if(payLoad.data === 'No' ){
-        $scope.userData = [];
-      }
-      else
-      {
-        $scope.userData = payLoad.data;
-      }
+    if(payLoad.data === 'No' ){
+      $scope.userData = [];
+    }
+    else
+    {
+      $scope.userData = payLoad.data;
+    }
   });
 
   var findAnimeInUser = function(id){
@@ -253,7 +253,6 @@ animetracker.controller('ListController', ['$scope', 'apiservice','$location', f
 
   $scope.toggleSelection = function toggleSelection(genre) {
     var idx = $scope.selectedGenres.indexOf(genre);
-     // is currently selected
     if (idx > -1) {
       $scope.selectedGenres.splice(idx, 1);
     }
