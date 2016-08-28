@@ -4,6 +4,7 @@ var models = require('./models/');
 
 
 module.exports = function (app,passport){
+
   app.get('/', function (req, res) {
 		res.locals.login = req.isAuthenticated(); 
 		res.render('index.html');
@@ -163,7 +164,6 @@ function merge_options(obj1,obj2){
 }
 
 function isLoggedIn(req, res, next) {
-	// if user is authenticated in the session, carry on
 	if (req.isAuthenticated())
 		return next();
 
