@@ -6,7 +6,7 @@ angular.module('animetracker').service('apiservice', ['$http', function ($http) 
     getSearch: function (Query) {
       return $http({
         method: 'GET',
-        url: 'http://localhost:8080/apisearch',
+        url: '/apisearch',
         params: {Query: Query}
       });
     },
@@ -14,7 +14,7 @@ angular.module('animetracker').service('apiservice', ['$http', function ($http) 
     addAnime: function(id, storeType){
       return $http({
         method: 'GET',
-        url : 'http://localhost:8080/adddata',
+        url : '/adddata',
         params : {
           animeId: id,
           storeType : storeType
@@ -25,7 +25,7 @@ angular.module('animetracker').service('apiservice', ['$http', function ($http) 
     removeAnime: function(id){
       return $http({
         method: 'GET',
-        url : 'http://localhost:8080/removedata',
+        url : '/removedata',
         params : {
           animeId: id
         }
@@ -35,14 +35,14 @@ angular.module('animetracker').service('apiservice', ['$http', function ($http) 
     getUserAnimeData: function(){
       return $http({
         method: 'GET',
-        url: 'http://localhost:8080/getdata'
+        url: '/getdata'
       });
     },
 
     getBrowse: function(options){
       return $http({
         method: 'GET',
-        url: 'http://localhost:8080/apibrowse',
+        url: '/apibrowse',
         params: { options : options}
       });
     },
@@ -50,20 +50,20 @@ angular.module('animetracker').service('apiservice', ['$http', function ($http) 
     getLoggedIn: function(){
       return $http({
         method: 'GET',
-        url: 'http://localhost:8080/loggedin'
+        url: '/loggedin'
       });
     },
 
     getGenres: function(){
       return $http({
         method: 'GET',
-        url: 'http://localhost:8080/apigenre'
+        url: '/apigenre'
       });	
     },
     getAnime: function(ID){
       return $http({
         method: 'GET',
-        url: 'http://localhost:8080/apianime',
+        url: '/apianime',
         params: {id : ID}
       });	
     },    
@@ -71,7 +71,7 @@ angular.module('animetracker').service('apiservice', ['$http', function ($http) 
     postLogin : function(formData){
       return $http({
         method: 'POST',
-        url: 'http://localhost:8080/login',
+        url: '/login',
         data: formData,
         transformRequest: function(obj) {
           var str = [];
@@ -86,7 +86,7 @@ angular.module('animetracker').service('apiservice', ['$http', function ($http) 
     postSignup : function(formData){
       return $http({
         method: 'POST',
-        url: 'http://localhost:8080/signup',
+        url: '/signup',
         data: formData,
         transformRequest: function(obj) {
           var str = [];
