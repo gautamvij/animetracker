@@ -40,7 +40,7 @@ models.sequelize.sync({
 	force: false,
 	logging: console.log
 }).then(function() {
-	var server = app.listen(8080, function () {
+	var server = app.listen(port, function () {
     var host = server.address().address;
     var port = server.address().port;
     console.log('AnimeTracker is listening at http://%s:%s', host, port);
