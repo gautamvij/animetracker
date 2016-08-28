@@ -19,20 +19,18 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
             template: function (element, attrs) {
                 var checkboxes = attrs.checkboxes ? true : false;
                 var groups = attrs.groupBy ? true : false;
-
-
                 //  
                 var template = '<div>';
                 template += '<button type="button"  ng-class="settings.buttonClasses" >{{getButtonText()}}&nbsp;<span class="caret"></span></button>';
                 // 
                 template += '<ul class="dropdown"  >';
-                template += '<li ng-show="settings.showUncheckAll"><a data-ng-click="deselectAll();"><span class="glyphicon glyphicon-remove"></span>   {{texts.uncheckAll}}</a></li>';
+                template += '<li ng-show="settings.showUncheckAll"><a class="dropmenu" data-ng-click="deselectAll();"><span class="glyphicon glyphicon-remove"></span>   {{texts.uncheckAll}}</a></li>';
                 template += '<li ng-show="settings.enableSearch"><input type="text"  style="width: 100%;" ng-model="searchFilter" placeholder="{{texts.searchPlaceholder}}" /></li>';
                 template += '<li ng-show="settings.enableSearch"></li>';
                 template += '<li  ng-repeat="option in options | filter: searchFilter">';
-                template += '<a ng-click="setSelectedItem(getPropertyForObject(option,settings.idProp))">';
+                template += '<a class="dropmenu" ng-click="setSelectedItem(getPropertyForObject(option,settings.idProp))">';
                 // paste the class for the tick button to be shown here 
-                template += '<span data-ng-class="{\'glyphicon glyphicon-ok\': isChecked(getPropertyForObject(option,settings.idProp))}"></span> {{getPropertyForObject(option, settings.displayProp)}}</a>';
+                template += '<span data-ng-class=\'tick\' ng-show="isChecked(getPropertyForObject(option,settings.idProp))">&#10004;</span> {{getPropertyForObject(option, settings.displayProp)}}</a>';
                 template += '</li>';
                 template += '</ul>';
                 template += '</div>';
@@ -138,7 +136,7 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
                         var parentFound = false;
 
                         while (angular.isDefined(target) && target !== null && !parentFound) {
-                            if (_.contains(target.className.split(' '), 'multiselect-parent') && !parentFound) {
+                            if (_.includes(target.className.split(' '), 'multiselect-parent') && !parentFound) {
                                 if(target === $dropdownTrigger) {
                                     parentFound = true;
                                 }

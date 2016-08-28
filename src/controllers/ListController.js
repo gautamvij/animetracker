@@ -33,9 +33,6 @@ animetracker.controller('ListController', ['$scope', 'apiservice','$location', f
         label : "Tv Short"
     }
     ];
-
-
-
      $scope.modalShown = false;
      $scope.toggleModal = function(result) {
         console.log(result);
@@ -60,7 +57,7 @@ animetracker.controller('ListController', ['$scope', 'apiservice','$location', f
 
     $scope.genreSettings = {
         buttonClasses : 'browsedropbutton',
-        smartButtonMaxItems: 3,
+        smartButtonMaxItems: 10,
         enableSearch : true, 
         closeOnBlur : true,
         scrollable : true
@@ -132,9 +129,6 @@ animetracker.controller('ListController', ['$scope', 'apiservice','$location', f
             type : $scope.selectedType.id,
             sort : "score-desc"
         };
-        console.log(options);
-
-
         var doBrowse = apiservice.getBrowse(options);
         doBrowse.then(
             function(payLoad) {
@@ -180,7 +174,7 @@ animetracker.controller('ListController', ['$scope', 'apiservice','$location', f
             apiservice.getUserAnimeData().then(function(payLoad){
                 $scope.userData = payLoad.data;
             });
-            $scope.showUserWishList();
+            //$scope.showUserWishList();
         }).then(function(error){
             console.log(error);
         });
@@ -192,7 +186,6 @@ animetracker.controller('ListController', ['$scope', 'apiservice','$location', f
             return;
         }
         apiservice.addAnime(id,null).then(function(payLoad){
-            debugger;
             console.log(payLoad);
             if(payLoad.data === "No")
             {
@@ -202,7 +195,6 @@ animetracker.controller('ListController', ['$scope', 'apiservice','$location', f
 
             $scope.animeData.animeStatus = 3;
             apiservice.getUserAnimeData().then(function(payLoad){
-                debugger;
                 $scope.userData = payLoad.data;
             });
 
@@ -213,7 +205,6 @@ animetracker.controller('ListController', ['$scope', 'apiservice','$location', f
     };
 
     apiservice.getUserAnimeData().then(function(payLoad){
-        debugger;
         if(payLoad.data === "No" ){
             $scope.userData = [];
         }
@@ -226,7 +217,6 @@ animetracker.controller('ListController', ['$scope', 'apiservice','$location', f
     var findAnimeInUser = function(id){
         for(var iter = 0; iter < $scope.userData.length; iter++)
         {
-        debugger
           if($scope.userData[iter].animeId === id)
           {
             return true;
@@ -237,15 +227,19 @@ animetracker.controller('ListController', ['$scope', 'apiservice','$location', f
 
     $scope.showUserWishList = function(){
         debugger;
+        $scope.loading=true;
         if($scope.isLoggedIn === true){
             $scope.results = [];
             apiservice.getUserAnimeData().then(function(payLoad){
             $scope.userData = payLoad.data;
+            if($scope.userData.length ===0)
+                $scope.loading= false;
             $scope.userData.forEach(function(e){
                     var promise = apiservice.getAnime(e.animeId);
                     promise.then(function(payLoad){
                         console.log(payLoad.data);
                         $scope.results.push(payLoad.data);
+                        $scope.loading=false;
                     });
                 });
             });

@@ -8,7 +8,7 @@ var cookieParser = require('cookie-parser');
 var morgan = require('morgan');
 var port     = process.env.PORT || 8080;
 var passport = require('passport');
-var flash    = require('connect-flash');
+var flash    = require("connect-flash");
 
 require('./passport')(passport);
 app.use(express.static(__dirname  + '/../src'));
@@ -30,6 +30,8 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); 
+app.use('/node_modules', express.static(__dirname + '/../node_modules'));
+
 
 
 

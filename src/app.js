@@ -9,10 +9,6 @@ animetracker.config(function ($routeProvider) {
       controller: 'RegisterController', 
       templateUrl: 'pages/register.html' 
     })
-    .when('/page/:id', { 
-      controller: 'AnimeController', 
-      templateUrl: 'pages/anime.html' 
-    }) 
     .otherwise({ 
       redirectTo: '/' 
     });

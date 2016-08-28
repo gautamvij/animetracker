@@ -1,45 +1,6 @@
 /**
 * Settings: Colors, Media Queries
 */
-ul {
-  padding: 0;
-  list-style: none;
-  width: 100px; }
-
-ul.dropdown li {
-  display: block;
-  position: relative;
-  line-height: 21px;
-  text-align: left; }
-
-ul li a {
-  display: block;
-  padding: 8px 25px;
-  color: #333;
-  text-decoration: none;
-  width: 100px; }
-
-a:hover {
-  color: #fff;
-  background: #939393; }
-
-ul.dropdown li:hover {
-  display: block; }
-
-ul.dropdown {
-  width: auto;
-  background: #f2f2f2;
-  display: none;
-  position: absolute;
-  z-index: 999;
-  left: 0; }
-
-ul.dropdown:hover {
-  display: block; }
-
-ul.dropdown li {
-  display: block; }
-
 /**
 * Tools: Mixin Functions
 */
@@ -59,7 +20,6 @@ h3,
 h4,
 h5,
 h6,
-p,
 blockquote,
 pre,
 a,
@@ -184,20 +144,23 @@ ul li {
   position: relative;
   top: 0px;
   left: 0px;
+  background: #5f5f5f;
   display: block;
   width: 100%;
   border-radius: 0;
-  border: 2px solid black;
+  border: 1px solid black;
   height: 8%;
+  color: #f1f1f1;
   font-size: 30px;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  border-bottom: 0px; }
 
 .wrapper {
   width: 100%;
   display: block;
   height: 88%;
   border-radius: 0;
-  border: 2px solid black;
+  border: 1px solid black;
   box-sizing: border-box; }
 
 .footer {
@@ -209,17 +172,33 @@ ul li {
   clear: both;
   width: 100%;
   border-radius: 0;
-  border: 2px solid black; }
+  border: 1px solid black;
+  border-top: 0px; }
 
-.side-bar {
+a.link {
   position: relative;
+  top: 0px;
+  left: 80%;
+  background-color: #f1f1f1;
+  color: black;
+  padding: 12px 22px;
+  text-align: center;
+  text-decoration: none;
   display: inline-block;
-  width: 20%;
-  height: 100%;
-  box-sizing: border-box;
-  font-size: 20px;
-  border-radius: 0;
-  border: 2px solid black; }
+  font-size: 16px; }
+
+a.link:hover {
+  background-color: grey;
+  color: white; }
+
+.tick {
+  font-family: wingdings;
+  font-size: 200%; }
+
+.loading {
+  position: relative;
+  top: 25%;
+  left: 25%; }
 
 .main-box {
   position: relative;
@@ -228,12 +207,15 @@ ul li {
   min-height: 100%;
   display: inline-block;
   overflow-y: scroll;
-  width: 98%;
+  width: 99%;
   max-height: 100%;
-  padding-left: 10px;
+  padding-left: 0px;
   box-sizing: border-box;
   border-radius: 0;
-  border: 2px solid black; }
+  border: 1px solid black; }
+
+.state {
+  font-size: 30px; }
 
 /**
 * Components: Aesthetic styling for reusable
@@ -262,8 +244,30 @@ ul li {
   transform: translate(-50%, -50%);
   -webkit-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
+  padding: 20px;
   background-color: #fff;
   box-shadow: 4px 4px 80px #000; }
+
+.ng-modal-dialog-img {
+  position: relative;
+  height: auto;
+  max-width: 40%;
+  display: inline-block; }
+
+.ng-model-dialog-sidecontent {
+  position: relative;
+  padding: 2%;
+  vertical-align: top;
+  height: 58%;
+  display: inline-block;
+  max-width: 40%; }
+
+.ng-model-dialog-maincontent {
+  position: relative;
+  height: 33%;
+  padding: 2%;
+  font-family: 'Droid Serif';
+  display: inline-block; }
 
 .ng-modal-dialog-content {
   padding: 10px;
@@ -284,7 +288,7 @@ a.onetile {
   display: inline-block;
   margin-bottom: 8px;
   width: 210px;
-  margin-right: 16px;
+  margin-right: 18px;
   text-decoration: none;
   color: black; }
 
@@ -305,12 +309,16 @@ a.onetile {
 
 .animetiles {
   display: flex;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+  margin-left: 20px; }
 
 .browsedropbutton {
   background-color: white;
   color: black;
-  border: 2px solid #555555; }
+  border: 2px solid #555555;
+  padding: 5px;
+  font-size: 15px;
+  min-width: 90px; }
 
 .browsedropbutton:hover {
   background-color: #555555;
@@ -325,12 +333,152 @@ a.onetile {
 .browseBar {
   display: inline-block;
   z-index: 1000000;
-  margin: 0px; }
+  margin: 0px;
+  font-size: 16px; }
 
 .wishlist {
   position: relative;
   left: 78%;
   top: 10px; }
+
+input.register {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box; }
+
+button.register {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%; }
+
+.container {
+  padding: 16px;
+  border: 3px solid #f1f1f1;
+  width: 30%; }
+
+ul.navbar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333; }
+
+ul.navbar li {
+  float: left; }
+
+ul.navbar li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none; }
+
+ul.navbar li a:hover {
+  background-color: #111; }
+
+.listsearch {
+  position: relative;
+  height: 10%;
+  padding-top: 2%;
+  padding-left: 3px;
+  left: 1%; }
+
+.searchanime {
+  background: #eee;
+  padding: 11px;
+  padding-bottom: 8px;
+  border-radius: 10px 0 0 10px;
+  -moz-border-radius: 10px 0 0 10px;
+  -webkit-border-radius: 10px 0 0 10px;
+  -o-border-radius: 10px 0 0 10px;
+  border: 0 none;
+  width: 160px; }
+
+.searchbutton {
+  background: black;
+  color: white;
+  font: 'trebuchet ms', trebuchet;
+  padding: 11px 20px;
+  padding-bottom: 8px;
+  border-radius: 0 10px 10px 0;
+  -moz-border-radius: 0 10px 10px 0;
+  -webkit-border-radius: 0 10px 10px 0;
+  -o-border-radius: 0 10px 10px 0;
+  border: 0 none;
+  font-weight: bold;
+  margin-left: -4px; }
+
+ul.dropdown li {
+  display: block;
+  position: relative;
+  line-height: 21px;
+  text-align: left;
+  width: 100%; }
+
+ul.dropdown li a {
+  display: block;
+  padding: 8px 25px;
+  color: #333;
+  text-decoration: none;
+  width: 100px; }
+
+a.dropmenu:hover {
+  color: #fff;
+  background: #939393; }
+
+ul.dropdown li:hover {
+  display: block; }
+
+ul.dropdown {
+  width: auto;
+  background: #f2f2f2;
+  display: none;
+  position: absolute;
+  z-index: 999;
+  left: auto; }
+
+ul.dropdown:hover {
+  display: block; }
+
+ul.dropdown li {
+  display: block; }
+
+.successbutton {
+  background-color: #4CAF50;
+  /* Green */
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  transition-duration: 0.4s; }
+
+.successbutton:hover {
+  background-color: #f1f1f1;
+  color: black; }
+
+.failbutton {
+  background-color: red;
+  /* Green */
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  transition-duration: 0.4s; }
+
+.failbutton:hover {
+  background-color: #f1f1f1;
+  color: black; }
 
 .grow {
   transition: all .2s ease-in-out; }

@@ -1,32 +1,36 @@
 
-<div>
-    
 
-<form ng-submit="doLogin()" ng-show="toLogin == 1" method="post">
-	Man Login Ra !!! <br><br>    
-    <label>Username</label>
-    <input type="text"  name="username" ng-model="formData.username">
-    <br>
-    
-    <label>Password</label>
-    <input type="password"  name="password" ng-model="formData.password">
-    
-    <button type="submit" >Login</button>
-</form>
+<div class="container" ng-show="toLogin == 1">
+  <h1 class="state">Login </h1><br>
+  <form ng-submit="doLogin()" method="post">
 
+    <label><b>Username</b></label>
+    <input class="register" type="text" placeholder="Enter Username" name="username" 
+    ng-model="formData.username" required>
 
-<form ng-submit="doSignUp()" ng-show="toLogin == 0" method="post">
-    Man SignUp Ra !!! <br><br> 
-    <label>Username</label>
-    <input type="text"  name="username" ng-model="formData.username">
-    <br>
-    
-    <label>Password</label>
-    <input type="password"  name="password" ng-model="formData.password">
-    
-    <button type="submit" >Signingup</button>
-</form>
+    <label><b>Password</b></label>
+    <input class="register" type="password" placeholder="Enter Password" name="password" 
+    ng-model="formData.password" required>
+        
+    <button class = "register" type="submit">Login</button>
+    <a href="/#/register/0" class="link"> SignUp </a>
+  </form>
+</div>
 
+<div class="container" ng-show="toLogin == 0">
+  <h1 class="state">Sign Up</h1><br>
+    <form ng-submit="doSignUp()"  method="post">  
+      <label><b>Username</b></label>
+      <input class="register" type="text" placeholder="Enter Username" name="username" 
+      ng-model="formData.username" required>
+
+      <label><b>Password</b></label>
+      <input class="register" type="password" placeholder="Enter Password" name="password" 
+      ng-model="formData.password" required>
+      <button class = "register" type="submit">SignUp</button>
+      <a href="/#/register/1" class="link"> Login </a>
+    </form>
+</div>
 
 <div ng-show="ErrorMessage"> 
     <div ng-switch on="ErrorMessage">

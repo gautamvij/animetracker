@@ -21,10 +21,34 @@
   transform: translate(-50%, -50%);
   -webkit-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
-
+  padding: 20px;
   background-color: #fff;
   box-shadow: 4px 4px 80px #000;
 }
+
+.ng-modal-dialog-img{
+  position: relative;
+  height: auto;
+  max-width: 40%;
+  display: inline-block;
+}
+
+.ng-model-dialog-sidecontent{
+  position: relative;
+  padding: 2%;
+  vertical-align:top;
+  height: 58%;
+  display: inline-block;
+  max-width: 40%;
+}
+.ng-model-dialog-maincontent{
+  position: relative;
+  height: 33%;
+  padding: 2%;
+  font-family: 'Droid Serif';
+  display: inline-block;
+}
+
 .ng-modal-dialog-content {
   padding:10px;
   text-align: left;

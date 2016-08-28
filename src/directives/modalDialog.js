@@ -11,7 +11,6 @@ animetracker.directive('modalDialog', [function() {
     replace: true, // Replace with the template below
     transclude: true, // we want to insert custom content inside the directive
     link: function(scope, element, attrs) {
-      console.log(scope.removedata);
       scope.dialogStyle = {};
       if (attrs.width)
         scope.dialogStyle.width = attrs.width;
