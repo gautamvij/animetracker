@@ -27,7 +27,7 @@ module.exports = function (app,passport){
 			});
 	});
 
-	app.get('/addData', isLoggedIn, function(req,res){
+	app.get('/adddata', isLoggedIn, function(req,res){
 		console.log(req.user.id);
 		var animeId = req.query.animeId;
 		var storeType = req.query.storeType;
@@ -42,7 +42,7 @@ module.exports = function (app,passport){
 
 	});
 
-	app.get('/removeData', isLoggedIn, function(req,res){
+	app.get('/removedata', isLoggedIn, function(req,res){
 		console.log(req.user.id);
 		var animeId = req.query.animeId;
 		models.Watchlist.destroy({
@@ -58,7 +58,7 @@ module.exports = function (app,passport){
 
 	});
 
-	app.get('/getData', isLoggedIn, function(req,res){
+	app.get('/getdata', isLoggedIn, function(req,res){
 		var userId = req.user.id;
 		models.Watchlist.findAll({
 	  		where : {
@@ -159,10 +159,10 @@ module.exports = function (app,passport){
 
 function merge_options(obj1,obj2){
 	'use strict';
-    var obj3 = {};
-    for (var attrname in obj1) { obj3[attrname] = obj1[attrname]; }
-    for (var attrname1 in obj2) { obj3[attrname1] = obj2[attrname1]; }
-    return obj3;
+    var objectWithMergedOptions = {};
+    for (var attrname in obj1) { objectWithMergedOptions[attrname] = obj1[attrname]; }
+    for (var attrname1 in obj2) { objectWithMergedOptions[attrname1] = obj2[attrname1]; }
+    return objectWithMergedOptions;
 }
 
 function isLoggedIn(req, res, next) {

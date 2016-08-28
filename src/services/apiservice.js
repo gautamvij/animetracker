@@ -15,7 +15,7 @@ animetracker.service('apiservice', ['$http', function ($http) {
 	    addAnime: function(id, storeType){
 	    	return $http({
 	    		method: 'GET',
-	    		url : 'http://localhost:8080/addData',
+	    		url : 'http://localhost:8080/adddata',
 	    		params : {
 	    			animeId: id,
 	    			storeType : storeType
@@ -26,7 +26,7 @@ animetracker.service('apiservice', ['$http', function ($http) {
 	    removeAnime: function(id){
 	    	return $http({
 	    		method: 'GET',
-	    		url : 'http://localhost:8080/removeData',
+	    		url : 'http://localhost:8080/removedata',
 	    		params : {
 	    			animeId: id,
 	    		}
@@ -36,7 +36,7 @@ animetracker.service('apiservice', ['$http', function ($http) {
 	    getUserAnimeData: function(){
 	    	return $http({
 	    		method: 'GET',
-	    		url: "http://localhost:8080/getData"
+	    		url: "http://localhost:8080/getdata"
 	    	});
 	    },
 	      
