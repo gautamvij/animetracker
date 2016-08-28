@@ -1,5 +1,5 @@
 
-animetracker.service('apiservice', ['$http', function ($http) {
+angular.module('animetracker').service('apiservice', ['$http', function ($http) {
 
 	// returning promise for the search query
   return {

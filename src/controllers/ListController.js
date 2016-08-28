@@ -1,4 +1,4 @@
-animetracker.controller('ListController', ['$scope', 'apiservice','$location', function ($scope, apiservice, $location) {
+angular.module('animetracker').controller('ListController', ['$scope', 'apiservice','$location', function ($scope, apiservice, $location) {
   'use strict';
   $scope.isLoggedIn = false;
   $scope.selection = 'search';

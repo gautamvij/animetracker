@@ -1,7 +1,7 @@
-animetracker.directive('listAnime', function() {
+angular.module('animetracker').directive('listAnime', [function() {
   return { 
     restrict: 'E', 
     templateUrl: './directives/listAnime.html' 
   }; 
-});
+}]);
 

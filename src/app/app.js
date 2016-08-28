@@ -1,5 +1,5 @@
-var animetracker = angular.module('animetracker', ['ngRoute','angularjs-dropdown-multiselect']);
-animetracker.config(function ($routeProvider) {
+angular.module('animetracker', ['ngRoute','angularjs-dropdown-multiselect'])
+.config(function ($routeProvider) {
   'use strict';
   $routeProvider 
     .when('/', { 

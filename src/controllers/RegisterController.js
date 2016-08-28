@@ -1,4 +1,4 @@
-animetracker.controller('RegisterController', ['$scope', 'apiservice', '$routeParams', '$location',
+angular.module('animetracker').controller('RegisterController', ['$scope', 'apiservice', '$routeParams', '$location',
 	function ($scope, apiservice, $routeParams, $location) {
   $scope.toLogin = $routeParams.toLogin;
   $scope.ErrorMessage = 0;

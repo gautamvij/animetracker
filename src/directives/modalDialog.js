@@ -1,5 +1,5 @@
 
-animetracker.directive('modalDialog', [function() {
+angular.module('animetracker').directive('modalDialog', [function() {
   'use strict';
   return {
     restrict: 'E',
