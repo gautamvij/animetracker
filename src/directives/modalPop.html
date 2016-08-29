@@ -1,0 +1,28 @@
+<div class='ng-modal' ng-show='show.data.toShow'>
+  <div class='ng-modal-overlay' ng-click='hideModal()'></div>
+  <div class='ng-modal-dialog' ng-style='dialogStyle'>
+      <div class = "loading" ng-show="!show.dataLink.animeStatus"> 
+        <img src="http://www.kjefta.org/bilder/flaksuflaks_logo_anime.gif">
+      </div>
+      <div ng-show="show.dataLink.animeStatus">
+        <div class="ng-modal-dialog-img">
+          <img src="{{show.dataLink.image_url_lge}}"> 
+        </div>
+  		  <div class="ng-model-dialog-sidecontent">
+          <h3 class="state">{{show.dataLink.title_english}}</h3>
+          <p> Type: {{show.dataLink.type}}  </p>
+          <p> Episodes: {{show.dataLink.total_episodes}}</p>
+          <p> Score: {{show.dataLink.average_score}} </p>
+          <p> Genres: <span ng-repeat="genre in show.dataLink.genres"> {{genre}}    </span></p>
+          <br>
+          <button class = "successbutton" ng-show="show.dataLink.animeStatus != 3" class="wishlistonmodal" ng-click="adddata(show.dataLink.id)">press to add </button>
+          <button class="failbutton" ng-show="show.dataLink.animeStatus == 3" class="wishlistonmodal" ng-click="removedata(show.dataLink.id)">press to remove </button>
+        </div>
+        <div class="ng-model-dialog-maincontent">
+          {{show.dataLink.description}}
+        </div>
+      		
+      </div>
+      <div class='ng-modal-close' ng-click='hideModal()'>X</div>
+  </div>
+</div>

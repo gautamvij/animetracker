@@ -4,14 +4,44 @@
   "description": "Its a web application that helps user to keep track of animes watched and not watched and some other features",
   "main": "app.js",
   "dependencies": {
+    "angular": "^1.5.8",
+    "angular-route": "^1.5.8",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.15.2",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
     "ejs": "^2.5.1",
-    "express": "^4.14.0"
+    "express": "^4.14.0",
+    "express-session": "^1.14.1",
+    "lodash": "^3.10.1",
+    "morgan": "^1.7.0",
+    "mysql": "^2.11.1",
+    "node-sass": "^3.8.0",
+    "nodemon": "^1.10.2",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "request": "^2.74.0",
+    "sequelize": "^3.24.1"
   },
   "devDependencies": {
-    "eslint": "^3.3.1"
+    "eslint": "^3.3.1",
+    "eslint-config-airbnb": "^10.0.1",
+    "eslint-config-standard": "^6.0.0",
+    "eslint-plugin-import": "^1.14.0",
+    "eslint-plugin-jsx-a11y": "^2.2.0",
+    "eslint-plugin-promise": "^2.0.1",
+    "eslint-plugin-react": "^6.1.2",
+    "eslint-plugin-standard": "^2.0.0",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^2.0.0"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server/server.js",
+    "build-css": "node-sass --include-path scss ./src/css/main.scss   ./src/css/main.css",
+    "watch-css": "nodemon -e scss -x \"npm run build-css\""
   },
   "author": "Gautam Vij",
   "license": "ISC"

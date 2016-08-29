@@ -2,6 +2,8 @@
 engines:
   duplication:
     enabled: true
+    exclude_fingerprints:
+    - b3e65ac5c4b3715d136337f16cb4f230
     config:
       languages:
       - ruby
@@ -10,6 +12,9 @@ engines:
       - php
   eslint:
     enabled: true
+    checks:
+      no-undef:
+        enabled: false
   fixme:
     enabled: true
 ratings:
@@ -21,4 +26,6 @@ ratings:
   - "**.php"
   - "**.py"
   - "**.rb"
-exclude_paths: []
+exclude_paths:
+- "server/routes.js"
+- "server/server.js"

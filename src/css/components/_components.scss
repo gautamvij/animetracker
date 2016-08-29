@@ -1,0 +1,16 @@
+@import './_modal.scss';
+@import './_tile.scss';
+@import './_button.scss';
+@import './_browseBar.scss';
+@import './_wishlist.scss';
+@import './_register.scss';
+@import './_navbar.scss';
+@import './_listsearch.scss';
+@import './_search.scss';
+@import './_dropdown.scss';
+@import './_successbutton.scss';
+@import './_failbutton.scss';
+.grow { transition: all .2s ease-in-out; }
+.grow:hover { transform: scale(1.1); }
+
+

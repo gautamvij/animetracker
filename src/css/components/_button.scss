@@ -1,0 +1,22 @@
+.browsedropbutton {
+    background-color: white;
+    color: black;
+    border: 2px solid #555555;
+    padding: 5px;
+    font-size: 15px;
+    min-width: 90px;
+}
+
+.browsedropbutton:hover {
+    background-color: #555555;
+    color: white;
+}
+.browsedropbutton:hover ~ ul.dropdown {
+	display: block;
+}
+
+.browsedropbutton:active ~ ul.dropdown {
+	display: block;
+	
+}
+

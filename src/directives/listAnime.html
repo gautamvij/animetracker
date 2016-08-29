@@ -1,0 +1,19 @@
+
+<a class = "onetile grow" ng-click='toggleModal(result)'>
+    <figure>
+      <img src="{{result.image_url_lge}}" alt="">
+      <figcaption>
+        <h3>{{result.title_english}}</h3>
+        Type: {{result.type}}   
+		Episodes: {{result.total_episodes}}
+		Score: {{result.average_score}}	 
+		<!--<span class="plus" ng-click="addToLub(result.id)"> + </span> -->
+      </figcaption>
+    </figure>
+  </a>
+  <div>
+
+    <modal-dialog show='{data: result, dataLink: animeData}' width='75%' height='80%' adddata=addToLib 
+    removedata=removeFromLib>
+    </modal-dialog>
+</div>
